@@ -3,10 +3,10 @@ namespace GDO\Audio;
 
 use GDO\File\File;
 use GDO\File\FileUtil;
-use GDO\UI\GDO_Color;
-use GDO\UI\GDO_Icon;
+use GDO\UI\GDT_Color;
+use GDO\UI\GDT_Icon;
 
-final class GDO_AudioIcon extends GDO_Icon
+final class GDT_AudioIcon extends GDT_Icon
 {
 	public function tempPath() { return GWF_PATH . 'temp/audio_icon/' . md5($this->path); }
 	public function tempPathFile(string $appendix) { return $this->tempPath() . $appendix; }
@@ -89,7 +89,7 @@ final class GDO_AudioIcon extends GDO_Icon
 		$detail = $this->detail;
 		$img = false;
 		// generate foreground color
-		list($r, $g, $b) = GDO_Color::html2rgb($foreground);
+		list($r, $g, $b) = GDT_Color::html2rgb($foreground);
 		
 		// process each wav individually
 		for($wav = 1; $wav <= sizeof($wavs_to_process); $wav++) {
@@ -147,7 +147,7 @@ final class GDO_AudioIcon extends GDO_Icon
 					$transparentColor = imagecolorallocatealpha($img, 0, 0, 0, 127);
 					imagefill($img, 0, 0, $transparentColor);
 				} else {
-					list($br, $bg, $bb) = GDO_Color::html2rgb($background);
+					list($br, $bg, $bb) = GDT_Color::html2rgb($background);
 					imagefilledrectangle($img, 0, 0, (int) ($data_size / $detail), $height * sizeof($wavs_to_process), imagecolorallocate($img, $br, $bg, $bb));
 				}
 			}

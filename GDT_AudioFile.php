@@ -1,9 +1,9 @@
 <?php
 namespace GDO\Audio;
 
-use GDO\File\GDO_File;
+use GDO\File\GDT_File;
 
-final class GDO_AudioFile extends GDO_File
+final class GDT_AudioFile extends GDT_File
 {
 	public function __construct()
 	{

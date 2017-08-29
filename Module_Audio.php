@@ -3,7 +3,7 @@ namespace GDO\Audio;
 
 use GDO\Core\Module;
 use GDO\File\File;
-use GDO\File\GDO_Path;
+use GDO\File\GDT_Path;
 use MP3File;
 
 final class Module_Audio extends Module
@@ -13,7 +13,7 @@ final class Module_Audio extends Module
 	public function getConfig()
 	{
 		return array(
-			GDO_Path::make('lame_mp3_path')->initial('/usr/bin/lame')->label('lamemp3_path'),
+			GDT_Path::make('lame_mp3_path')->initial('/usr/bin/lame')->label('lamemp3_path'),
 		);
 	}
 	public function cfgLamePath() { return $this->getConfigValue('lame_mp3_path'); }
