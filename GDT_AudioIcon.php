@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Audio;
 
-use GDO\File\File;
+use GDO\File\GDO_File;
 use GDO\File\FileUtil;
 use GDO\UI\GDT_Color;
 use GDO\UI\GDT_Icon;
@@ -13,7 +13,7 @@ final class GDT_AudioIcon extends GDT_Icon
 	
 	public $path;
 	public function path(string $path) { $this->path = $path; return $this; }
-	public function file(File $file) { return $this->path($file->getPath()); }
+	public function file(GDO_File $file) { return $this->path($file->getPath()); }
 	
 	public $stereo = false;
 	public function mono() { $this->stereo = false; return $this; }

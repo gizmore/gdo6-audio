@@ -1,12 +1,12 @@
 <?php
 namespace GDO\Audio;
 
-use GDO\Core\Module;
-use GDO\File\File;
+use GDO\Core\GDO_Module;
+use GDO\File\GDO_File;
 use GDO\File\GDT_Path;
 use MP3File;
 
-final class Module_Audio extends Module
+final class Module_Audio extends GDO_Module
 {
 	public $module_priority = 30;
 	
@@ -21,7 +21,7 @@ final class Module_Audio extends Module
 	####################
 	### MP3File info ###
 	####################
-	public function mp3Info(File $file)
+	public function mp3Info(GDO_File $file)
 	{
 		$this->includeClass('3p/MP3File');
 		$mp3file = new MP3File($file->getPath());
