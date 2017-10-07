@@ -9,21 +9,21 @@ use GDO\UI\GDT_Icon;
 final class GDT_AudioIcon extends GDT_Icon
 {
 	public function tempPath() { return GWF_PATH . 'temp/audio_icon/' . md5($this->path); }
-	public function tempPathFile(string $appendix) { return $this->tempPath() . $appendix; }
+	public function tempPathFile($appendix) { return $this->tempPath() . $appendix; }
 	
 	public $path;
-	public function path(string $path) { $this->path = $path; return $this; }
+	public function path($path) { $this->path = $path; return $this; }
 	public function file(GDO_File $file) { return $this->path($file->getPath()); }
 	
 	public $stereo = false;
 	public function mono() { $this->stereo = false; return $this; }
-	public function stereo(bool $stereo=true) { $this->stereo = $stereo; return $this; }
+	public function stereo($stereo=true) { $this->stereo = $stereo; return $this; }
 	
 	public $flat = false;
-	public function flat(bool $flat=true) { $this->flat = $flat; return $this; }
+	public function flat($flat=true) { $this->flat = $flat; return $this; }
 	
 	public $detail = 5;
-	public function detail(int $detail) { $this->detail = $detail; return $this; }
+	public function detail($detail) { $this->detail = $detail; return $this; }
 	
 	public function generatePNG()
 	{
