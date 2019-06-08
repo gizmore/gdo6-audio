@@ -8,7 +8,7 @@ use GDO\UI\GDT_Icon;
 
 final class GDT_AudioIcon extends GDT_Icon
 {
-	public function tempPath() { return GWF_PATH . 'temp/audio_icon/' . md5($this->path); }
+	public function tempPath() { return GDO_PATH . 'temp/audio_icon/' . md5($this->path); }
 	public function tempPathFile($appendix) { return $this->tempPath() . $appendix; }
 	
 	public $path;
