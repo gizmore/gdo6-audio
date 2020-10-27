@@ -1,19 +1,19 @@
 <?php
 namespace GDO\Audio\Method;
 
-use GDO\Audio\GDO_Album;
+use GDO\Audio\GDO_Band;
 use GDO\Audio\MethodAudioCRUD;
 
-final class AlbumCRUD extends MethodAudioCRUD
+final class BandCRUD extends MethodAudioCRUD
 {
     public function hrefList()
     {
-        return href('Audio', 'AlbumList');
+        return href('Audio', 'BandList');
     }
 
     public function gdoTable()
     {
-        return GDO_Album::table();
+        return GDO_Band::table();
     }
     
 }

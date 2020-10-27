@@ -1,8 +1,50 @@
 <?php
 return array(
-    
+# Config
 'cfg_lame_mp3_path' => 'Path to lame mp3 encoder',
 'cfg_tt_lame_mp3_path' => 'Can be specified if not in PATH.',
+'cfg_allow_user_entries' => 'Allow user contributions?',
+'cfg_allow_guest_entries' => 'Allow guest contributions?',
+'cfg_hook_left_bar' => 'Add menu to left Bar?',
+
+# GDO
+'gdo_album' => 'Album',
+'gdo_band' => 'Band',
+'gdo_song' => 'Song',
+'gdo_musician' => 'Musician',
+    
+# GDT
+'band' => 'Band',
+'cover' => 'Cover',
+'released' => 'Released on',
+'founded' => 'Founded',
+'genre' => 'Genre',
+'select_genre' => 'Select genre',
+'bpm' => 'Beats per minute',
+'lyrics' => 'Lyrics',
+'song_original' => 'Original Song',
+'num_songs' => 'Songs available',
+    
+# Nav
+'link_add_album' => 'Add Album',
+'link_album_list' => 'List Albums',
+'link_add_song' => 'Add Song',
+'link_song_list' => 'List Songs',
+'link_add_musician' => 'Add Musician',
+'link_musician_list' => 'List Musicians',
+'link_add_band' => 'Add Band',
+'link_band_list' => 'List Bands',
+    
+# AlbumCRUD
+
+# AlbumList
+'list_albumlist' => '%s Album(s) available',
+
+# SongList
+'list_songlist' => '%s Song(s) available',
+
+# BandList
+'list_bandlist' => '%s Band(s) available',
     
 # Genres
 'enum_art_punk' => 'art_punk',

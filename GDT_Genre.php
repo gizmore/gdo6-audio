@@ -824,9 +824,15 @@ final class GDT_Genre extends GDT_Enum
         'zydeco',
     );
 
+    public function defaultLabel() { return $this->label('genre'); }
+    
     public function __construct()
     {
+        $this->icon('guitar');
         $this->enumValues(...self::$GENRES);
+        $this->completionHref(href('Audio', 'CompleteGenre'));
+        $this->emptyValue('0');
+        $this->emptyLabel(t('select_genre'));
     }
     
 }

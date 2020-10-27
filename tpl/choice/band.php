@@ -1,0 +1,3 @@
+<?phpuse GDO\Audio\GDO_Band;use GDO\Country\GDT_Country;
+/** @var $gdo GDO_Band **//** @var $country GDT_Country **/$country = $gdo->gdoColumn('band_country');
+?><div style="display: flex;">  <div><?=$country->withName(false)->renderCell()?></div>  <div>    <div><?=$gdo->displayName()?></div>    <div style="display: flex;"><span style="flex-grow: 1 1 auto;"><?=$gdo->displayGenre()?></span><span><?=$gdo->displayFounded()?></span></div>  </div></div>
