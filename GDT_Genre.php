@@ -830,9 +830,9 @@ final class GDT_Genre extends GDT_Enum
     {
         $this->icon('guitar');
         $this->enumValues(...self::$GENRES);
-        $this->completionHref(href('Audio', 'CompleteGenre'));
         $this->emptyValue('0');
         $this->emptyLabel(t('select_genre'));
+        $this->completionHref(href('Audio', 'CompleteGenre'));
     }
     
 }

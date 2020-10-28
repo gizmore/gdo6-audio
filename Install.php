@@ -12,9 +12,9 @@ final class Install
     
     private static function detectLameMP3(Module_Audio $module)
     {
-        if (Process::commandExists("lame"))
+        if ($path = Process::commandPath("lame", '.exe'))
         {
-            $module->saveConfigVar('lame_mp3_path', "lame");
+            $module->saveConfigVar('lame_mp3_path', $path);
         }
     }
     

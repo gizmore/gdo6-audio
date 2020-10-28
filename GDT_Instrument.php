@@ -105,9 +105,14 @@ final class GDT_Instrument extends GDT_Enum
         'zither',
     );
     
+    public function defaultLabel() { return $this->label('instrument'); }
+    
     public function __construct()
     {
         $this->enumValues(...self::$INSTRUMENTS);
+        $this->emptyValue("0");
+        $this->emptyLabel('not_specified');
+        $this->completionHref(href('Audio', 'CompleteInstrument'));
     }
     
 }

@@ -16,6 +16,8 @@ return array(
 # GDT
 'band' => 'Band',
 'cover' => 'Cover',
+'album' => 'Album',
+'song' => 'Song',
 'released' => 'Released on',
 'founded' => 'Founded',
 'genre' => 'Genre',
@@ -24,6 +26,7 @@ return array(
 'lyrics' => 'Lyrics',
 'song_original' => 'Original Song',
 'num_songs' => 'Songs available',
+'instrument' => 'Instrument',
     
 # Nav
 'link_add_album' => 'Add Album',
@@ -39,13 +42,24 @@ return array(
 
 # AlbumList
 'list_albumlist' => '%s Album(s) available',
+'album_subtitle' => '%s %s',
 
 # SongList
 'list_songlist' => '%s Song(s) available',
+'band_cell' => '%s from %s on %s.',
+'audiofile' => 'Audiofile',
 
 # BandList
-'list_bandlist' => '%s Band(s) available',
-    
+'list_bandlist' => '%s Band(s) listed',
+
+# MusicianList
+'list_musicianlist' => '%s Musician(s) listed',
+'musician_born' => 'Born %s should be %s old by now',
+
+# AlbumSong
+'ft_audio_albumsong' => 'Assign Song',
+'msg_added_track' => 'Added %s to the album %s.',
+
 # Genres
 'enum_art_punk' => 'art_punk',
 'enum_britpunk' => 'britpunk',

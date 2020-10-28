@@ -2,8 +2,8 @@
 namespace GDO\Audio\Method;
 
 use GDO\Core\GDO;
-use GDO\Core\MethodCompletion;
 use GDO\Audio\GDO_Song;
+use GDO\Core\MethodCompletionSearch;
 
 /**
  * Generic completion for music songs.
@@ -15,7 +15,7 @@ use GDO\Audio\GDO_Song;
  * @see GDT_Table
  * @see MethodCompletion
  */
-final class CompleteSong extends MethodCompletion
+final class CompleteSong extends MethodCompletionSearch
 {
     public function gdoTable()
     {
@@ -36,7 +36,7 @@ final class CompleteSong extends MethodCompletion
     {
         return array(
             'id' => $gdo->getID(),
-            'text' => $gdo->displayName(),
+            'text' => $gdo->displayTitle(),
             'display' => $gdo->renderChoice(),
         );
     }

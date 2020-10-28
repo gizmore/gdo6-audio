@@ -15,6 +15,7 @@ use GDO\File\GDO_File;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_DeletedAt;
 use GDO\DB\GDT_DeletedBy;
+use GDO\User\GDO_User;
 
 /**
  * Music album entity.
@@ -36,7 +37,6 @@ final class GDO_Album extends GDO
             GDT_Genre::make('album_genre'),
             GDT_Band::make('album_band'),
             GDT_Date::make('album_released')->label('released'),
-            GDT_Country::make('album_country')->withCompletion(),
             GDT_ImageFile::make('album_cover')->label('cover')->scaledVersion('thumb', 128, 128),
             GDT_EditedAt::make('album_edited'),
             GDT_EditedBy::make('album_editor'),
@@ -46,6 +46,12 @@ final class GDO_Album extends GDO
             GDT_DeletedBy::make('album_deletor'),
         );
     }
+    
+    ############
+    ### Perm ###
+    ############^
+    public function canEdit(GDO_User $user=null) { return Module_Audio::instance()->canEdit($user); }
+    public function hrefEdit() { return href('Audio', 'AlbumCRUD', "&album_id={$this->getID()}"); }
     
     ##############
     ### Getter ###
@@ -60,6 +66,9 @@ final class GDO_Album extends GDO
     ### Render ###
     ##############
     public function displayTitle() { return $this->display('album_title'); }
+    public function displayReleased() { return $this->gdoColumn('album_released')->renderCell(); }
+    public function displayBand() { return $this->gdoColumn('album_band')->renderChoice(); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/album.php', ['gdo' => $this]); }
+    public function renderChoice() { return sprintf('%s - %s', $this->displayTitle(), $this->displayBand()); }
     
 }

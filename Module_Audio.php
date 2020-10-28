@@ -65,7 +65,7 @@ final class Module_Audio extends GDO_Module
 	        GDO_Musician::class,
 	        GDO_Song::class,
 	        GDO_Album::class,
-	        GDO_AlbumSong::class,
+	        GDO_SongAlbum::class,
 	        GDO_SongMusician::class,
 	    );
 	}

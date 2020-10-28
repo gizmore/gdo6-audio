@@ -2,8 +2,8 @@
 namespace GDO\Audio\Method;
 
 use GDO\Core\GDO;
-use GDO\Core\MethodCompletion;
 use GDO\Audio\GDO_Musician;
+use GDO\Core\MethodCompletionSearch;
 
 /**
  * Generic completion for musicians.
@@ -14,7 +14,7 @@ use GDO\Audio\GDO_Musician;
  *
  * @see GDT_Table
  */
-final class CompleteMusician extends MethodCompletion
+final class CompleteMusician extends MethodCompletionSearch
 {
     public function gdoTable()
     {

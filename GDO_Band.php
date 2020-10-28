@@ -14,6 +14,8 @@ use GDO\DB\GDT_DeletedAt;
 use GDO\DB\GDT_DeletedBy;
 use GDO\Core\GDT_Template;
 use GDO\User\GDO_User;
+use GDO\DB\GDT_UInt;
+use GDO\DB\GDT_Virtual;
 
 /**
  * A music band entity.
@@ -33,10 +35,11 @@ final class GDO_Band extends GDO
     {
         return array(
             GDT_AutoInc::make('band_id'),
-            GDT_Title::make('band_name')->notNull(),
+            GDT_Title::make('band_name')->label('name')->notNull()->unique(),
             GDT_Genre::make('band_genre'),
             GDT_Date::make('band_founded')->label('founded'),
             GDT_Country::make('band_country')->withCompletion(),
+            GDT_Virtual::make('band_albums')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_album WHERE album_band=band_id"),
             GDT_EditedAt::make('band_edited'),
             GDT_EditedBy::make('band_editor'),
             GDT_CreatedAt::make('band_created'),
@@ -58,8 +61,9 @@ final class GDO_Band extends GDO
     public function displayGenre() { return $this->gdoColumn('band_genre')->renderCell(); }
     public function displayFounded() { return $this->gdoColumn('band_founded')->renderCell(); }
     public function displayCountry() { return $this->gdoColumn('band_country')->renderCell(); }
+    public function renderCell() { return GDT_Template::php('Audio', 'cell/band.php', ['gdo' => $this]); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/band.php', ['gdo' => $this]); }
-    public function renderChoice() { return GDT_Template::php('Audio', 'choice/band.php', ['gdo' => $this]); }
+    public function renderChoice() { return $this->displayName(); }
 
     ##################
     ### Permission ###

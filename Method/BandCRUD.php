@@ -16,4 +16,6 @@ final class BandCRUD extends MethodAudioCRUD
         return GDO_Band::table();
     }
     
+    public function formName() { return 'form_band'; }
+
 }
