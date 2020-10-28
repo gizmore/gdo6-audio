@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Audio\Method;
 
+use GDO\Core\GDO;
 use GDO\Core\MethodCompletion;
 use GDO\Audio\GDO_Song;
 
@@ -31,4 +32,13 @@ final class CompleteSong extends MethodCompletion
         return $this->gdoTable()->getGDOColumns(['song_title', 'song_band', 'song_genre', 'song_language', 'song_lyrics', 'song_bpm']);
     }
     
+    public function renderJSON(GDO $gdo)
+    {
+        return array(
+            'id' => $gdo->getID(),
+            'text' => $gdo->displayName(),
+            'display' => $gdo->renderChoice(),
+        );
+    }
+
 }

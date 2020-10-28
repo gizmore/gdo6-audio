@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Audio\Method;
 
+use GDO\Core\GDO;
 use GDO\Core\MethodCompletion;
 use GDO\Audio\GDO_Musician;
 
@@ -28,6 +29,15 @@ final class CompleteMusician extends MethodCompletion
     public function gdoHeaderColumns()
     {
         return $this->gdoTable()->getGDOColumns(['musician_name', 'musician_country']);
+    }
+    
+    public function renderJSON(GDO $gdo)
+    {
+        return array(
+            'id' => $gdo->getID(),
+            'text' => $gdo->displayName(),
+            'display' => $gdo->renderChoice(),
+        );
     }
     
 }

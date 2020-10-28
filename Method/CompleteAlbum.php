@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Audio\Method;
 
+use GDO\Core\GDO;
 use GDO\Core\MethodCompletion;
 use GDO\Audio\GDO_Album;
 
@@ -29,5 +30,15 @@ final class CompleteAlbum extends MethodCompletion
     {
         return $this->gdoTable()->getGDOColumns(['album_title', 'album_genre', 'album_band', 'album_country']);
     }
+    
+    public function renderJSON(GDO $gdo)
+    {
+        return array(
+            'id' => $gdo->getID(),
+            'text' => $gdo->displayName(),
+            'display' => $gdo->renderChoice(),
+        );
+    }
+
     
 }
