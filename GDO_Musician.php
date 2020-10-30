@@ -2,6 +2,7 @@
 namespace GDO\Audio;
 
 use GDO\Core\GDO;
+use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_EditedAt;
@@ -19,6 +20,7 @@ use GDO\DB\GDT_Virtual;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
 use GDO\User\GDT_Gender;
+use GDO\Audio\Method\SongMusician;
 
 final class GDO_Musician extends GDO
 {
@@ -29,10 +31,11 @@ final class GDO_Musician extends GDO
             GDT_String::make('musician_name')->label('name')->unique()->notNull(),
             GDT_Gender::make('musician_gender'),
             GDT_Country::make('musician_country')->withCompletion(),
-            GDT_Instrument::make('musician_instrument'),
             GDT_Birthdate::make('musician_birthday'),
             GDT_ImageFile::make('musician_photo')->scaledVersion('thumb', 64, 64),
-            GDT_Virtual::make('musician_songs')->label('num_songs')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_songmusician WHERE sm_musician = musician_id"),
+            GDT_Checkbox::make('musician_featured')->label('featured')->initial('0'),
+            GDT_Virtual::make('musician_songs')->label('num_songs')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(DISTINCT(sm_song)) FROM gdo_songmusician WHERE sm_musician = musician_id"),
+            GDT_Virtual::make('musician_instruments')->label('num_instruments')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(DISTINCT(sm_instrument)) FROM gdo_songmusician WHERE sm_musician = musician_id"),
             GDT_EditedAt::make('musician_edited'),
             GDT_EditedBy::make('musician_editor'),
             GDT_CreatedAt::make('musician_created'),
@@ -42,7 +45,13 @@ final class GDO_Musician extends GDO
         );
     }
     
+    /**
+     * @return GDO_Song[]
+     */
+    public function getSongs() { return GDO_SongMusician::getSongs($this); }
     public function getBirthdate() { return $this->getVar('musician_birthday'); }
+    public function getNumSongs() { return $this->getVar('musician_songs'); }
+    public function getNumInstruments() { return $this->getVar('musician_instruments'); }
     
     ############
     ### Perm ###
@@ -52,13 +61,16 @@ final class GDO_Musician extends GDO
     ############
     ### HREF ###
     ############
-    public function hrefEdit() { return href('Audio', 'MusicianCRUD', "&id={$this->getID()}"); }
+    public function hrefEdit() { return href('Audio', 'MusicianCRUD', "&musician_id={$this->getID()}"); }
+    public function hrefShow() { return href('Audio', 'MusicianShow', "&id={$this->getID()}"); }
     
     ###############
     ###  Render ###
     ###############
+    public function displayName() { return $this->display('musician_name'); }
     public function displayAge() { return Time::displayAge($this->getBirthdate()); }
     public function displayBirthdate() { return $this->gdoColumn('musician_birthday')->renderCell(); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/musician.php', ['gdo' => $this]); }
+    public function renderList() { return GDT_Template::php('Audio', 'list/musician.php', ['gdo' => $this]); }
     
 }

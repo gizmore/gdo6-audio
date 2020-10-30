@@ -2,9 +2,9 @@
 namespace GDO\Audio\Method;
 
 use GDO\Audio\GDO_Band;
-use GDO\Table\MethodQueryList;
+use GDO\UI\MethodCard;
 
-final class BandList extends MethodQueryList
+final class BandShow extends MethodCard
 {
     public function gdoTable()
     {

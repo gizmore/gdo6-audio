@@ -3,6 +3,7 @@ namespace GDO\Audio;
 
 use GDO\Core\GDO;
 use GDO\DB\GDT_AutoInc;
+use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_EditedAt;
@@ -39,6 +40,7 @@ final class GDO_Band extends GDO
             GDT_Genre::make('band_genre'),
             GDT_Date::make('band_founded')->label('founded'),
             GDT_Country::make('band_country')->withCompletion(),
+            GDT_Checkbox::make('band_featured')->label('featured')->initial('0'),
             GDT_Virtual::make('band_albums')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_album WHERE album_band=band_id"),
             GDT_EditedAt::make('band_edited'),
             GDT_EditedBy::make('band_editor'),
@@ -62,6 +64,7 @@ final class GDO_Band extends GDO
     public function displayFounded() { return $this->gdoColumn('band_founded')->renderCell(); }
     public function displayCountry() { return $this->gdoColumn('band_country')->renderCell(); }
     public function renderCell() { return GDT_Template::php('Audio', 'cell/band.php', ['gdo' => $this]); }
+    public function renderList() { return GDT_Template::php('Audio', 'list/band.php', ['gdo' => $this]); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/band.php', ['gdo' => $this]); }
     public function renderChoice() { return $this->displayName(); }
 
@@ -69,6 +72,9 @@ final class GDO_Band extends GDO
     ### Permission ###
     ##################
     public function canEdit(GDO_User $user=null) { return Module_Audio::instance()->canEdit($user); }
+    public function hrefEdit() { return href('Audio', 'BandCRUD', "&band_id={$this->getID()}"); }
+    public function hrefShow() { return href('Audio', 'BandShow', "&id={$this->getID()}"); }
+    public function hrefSongs() { return href('Audio', 'SongList'); }
     
     ##################
     ### Statistics ###

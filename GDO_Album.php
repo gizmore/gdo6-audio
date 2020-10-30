@@ -15,6 +15,9 @@ use GDO\Core\GDT_Template;
 use GDO\DB\GDT_DeletedAt;
 use GDO\DB\GDT_DeletedBy;
 use GDO\User\GDO_User;
+use GDO\DB\GDT_Virtual;
+use GDO\DB\GDT_UInt;
+use GDO\DB\GDT_Checkbox;
 
 /**
  * Music album entity.
@@ -36,7 +39,9 @@ final class GDO_Album extends GDO
             GDT_Genre::make('album_genre'),
             GDT_Band::make('album_band'),
             GDT_Date::make('album_released')->label('released'),
+            GDT_Checkbox::make('album_featured')->label('featured')->initial('0'),
             GDT_ImageFile::make('album_cover')->label('cover')->scaledVersion('thumb', 128, 128)->previewHREF(href('Audio', 'Cover', "&file=")),
+            GDT_Virtual::make('album_tracks')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_songalbum WHERE sa_album=album_id"),
             GDT_EditedAt::make('album_edited'),
             GDT_EditedBy::make('album_editor'),
             GDT_CreatedAt::make('album_created'),
@@ -51,6 +56,7 @@ final class GDO_Album extends GDO
     ############^
     public function canEdit(GDO_User $user=null) { return Module_Audio::instance()->canEdit($user); }
     public function hrefEdit() { return href('Audio', 'AlbumCRUD', "&album_id={$this->getID()}"); }
+    public function hrefShow() { return href('Audio', 'AlbumView', "&id={$this->getID()}"); }
     
     ##############
     ### Getter ###
@@ -81,6 +87,7 @@ final class GDO_Album extends GDO
 //     public function displayBand() { return $this->gdoColumn('album_band')->renderChoice(); }
 //     public function displayCover() { return $this->gdoColumn('album_cover')->renderCell(); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/album.php', ['gdo' => $this]); }
+    public function renderList() { return GDT_Template::php('Audio', 'list/album.php', ['gdo' => $this]); }
     public function renderChoice() { return GDT_Template::php('Audio', 'choice/album.php', ['album' => $this]); }
     
 }

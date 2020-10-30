@@ -25,8 +25,21 @@ final class SongCRUD extends MethodAudioCRUD
         if ($this->album)
         {
             GDO_SongAlbum::addTrack($this->album, $song);
+            return $this->message('msg_added_track', [$song->displayTitle(), $this->album->displayTitle()]);
         }
-        return $this->message('msg_added_track', [$song->displayTitle(), $this->album->displayTitle()]);
+    }
+
+    public function renderPage()
+    {
+        if ($this->gdo)
+        {
+            $setMusician = SongMusician::make()->song($this->gdo);
+            $crudMusician = MusicianCRUD::make()->song($this->gdo);
+            return parent::renderPage()->
+            add($setMusician->execute())->
+            add($crudMusician->execute());
+        }
+        return parent::renderPage();
     }
 
 }

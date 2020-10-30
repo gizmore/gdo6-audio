@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Audio\Method;
 
-use GDO\Table\MethodQueryCards;
 use GDO\Audio\GDO_Album;
+use GDO\Table\MethodQueryList;
 
-final class AlbumList extends MethodQueryCards
+final class AlbumList extends MethodQueryList
 {
     public function gdoTable()
     {

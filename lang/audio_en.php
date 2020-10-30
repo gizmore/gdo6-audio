@@ -26,9 +26,15 @@ return array(
 'lyrics' => 'Lyrics',
 'song_original' => 'Original Song',
 'num_songs' => 'Songs available',
+'num_tracks' => '%s track(s)',
 'instrument' => 'Instrument',
+'musician' => 'Musician',
 'track_duration' => 'Track %s - %s (%s)',
-    
+'born' => 'born %s',
+'age' => '(%s)',
+'musician_num_songs' => 'Songs: %s',
+'musician_num_instruments' => 'Instruments: %s',
+
 # Nav
 'link_add_album' => 'Add Album',
 'link_album_list' => 'List Albums',
@@ -43,7 +49,6 @@ return array(
 
 # AlbumList
 'list_albumlist' => '%s Album(s) available',
-'album_subtitle' => '%s %s',
 
 # SongList
 'list_songlist' => '%s Song(s) available',
@@ -61,6 +66,10 @@ return array(
 'ft_audio_albumsong' => 'Assign Song',
 'msg_added_track' => 'Added %s to the album %s.',
 
+# SongMusician
+'ft_audio_songmusician' => 'Assign Musician',
+'msg_added_musician_to_song' => 'You have added %s to %s playing the %s.',
+    
 # Genres
 'enum_art_punk' => 'art_punk',
 'enum_britpunk' => 'britpunk',
