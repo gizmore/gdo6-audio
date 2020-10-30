@@ -52,7 +52,7 @@ final class GDO_Song extends GDO
     ############
     ### Perm ###
     ############
-    public function canEdit(GDO_User $user) { return Module_Audio::instance()->canEdit($user); }
+    public function canEdit(GDO_User $user=null) { return Module_Audio::instance()->canEdit($user); }
     public function hrefEdit() { return href('Audio', 'SongCRUD', "&song_id={$this->getID()}"); }
     
     ##############
@@ -80,8 +80,10 @@ final class GDO_Song extends GDO
     ##############
     ### Render ###
     ##############
+    public function displayName() { return $this->display('song_title'); }
     public function displayTitle() { return $this->display('song_title'); }
     public function displayGenre() { return $this->gdoColumn('song_genre'); }
+    public function displayDuration() { return $this->gdoColumn('song_duration')->renderCell(); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/song.php', ['gdo' => $this]); }
     public function renderChoice() { return $this->display('song_title'); }
     

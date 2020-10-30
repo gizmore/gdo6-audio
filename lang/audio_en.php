@@ -27,6 +27,7 @@ return array(
 'song_original' => 'Original Song',
 'num_songs' => 'Songs available',
 'instrument' => 'Instrument',
+'track_duration' => 'Track %s - %s (%s)',
     
 # Nav
 'link_add_album' => 'Add Album',

@@ -16,7 +16,6 @@ final class Cover extends Method
     public function gdoParameters()
     {
         return array(
-            GDT_Id::make('album')->notNull(),
             GDT_Id::make('file')->notNull(),
             GDT_Enum::make('variant')->enumValues('thumb'),
         );
@@ -24,7 +23,7 @@ final class Cover extends Method
     
     public function execute()
     {
-        $album = GDO_Album::findById($this->gdoParameterVar('album'));
+        $album = GDO_Album::findBy('album_cover', $this->gdoParameterVar('file'));
         $variant = $this->gdoParameterVar('variant');
         return GetFile::make()->executeWithId($album->getCoverId(), $variant);
     }

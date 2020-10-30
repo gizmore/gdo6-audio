@@ -1,0 +1,2 @@
+<?phpuse GDO\Audio\GDO_Album;
+use GDO\Audio\GDT_BandSubtitle;/** @var $album GDO_Album **/?><div class="flx flx-row flx-collapse">  <div><?=$album->gdoCoverColumn()->withFileInfo(false)->variant('thumb')->imageSize(32, 32)->renderCell()?></div>  <div class="flx flx-column flx-collapse">    <div><?=$album->displayTitle()?></div>    <div><?=GDT_BandSubtitle::make()->band($album->getBand())->renderCell()?></div>  </div></div>

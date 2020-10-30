@@ -34,6 +34,7 @@ final class CompleteSong extends MethodCompletionSearch
     
     public function renderJSON(GDO $gdo)
     {
+        /** @var $gdo GDO_Song **/
         return array(
             'id' => $gdo->getID(),
             'text' => $gdo->displayTitle(),

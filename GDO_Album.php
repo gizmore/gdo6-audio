@@ -2,7 +2,6 @@
 namespace GDO\Audio;
 
 use GDO\Core\GDO;
-use GDO\Country\GDT_Country;
 use GDO\DB\GDT_AutoInc;
 use GDO\UI\GDT_Title;
 use GDO\Date\GDT_Date;
@@ -37,7 +36,7 @@ final class GDO_Album extends GDO
             GDT_Genre::make('album_genre'),
             GDT_Band::make('album_band'),
             GDT_Date::make('album_released')->label('released'),
-            GDT_ImageFile::make('album_cover')->label('cover')->scaledVersion('thumb', 128, 128),
+            GDT_ImageFile::make('album_cover')->label('cover')->scaledVersion('thumb', 128, 128)->previewHREF(href('Audio', 'Cover', "&file=")),
             GDT_EditedAt::make('album_edited'),
             GDT_EditedBy::make('album_editor'),
             GDT_CreatedAt::make('album_created'),
@@ -61,14 +60,27 @@ final class GDO_Album extends GDO
      */
     public function getCover() { return $this->getValue('album_cover'); }
     public function getCoverId() { return $this->getVar('album_cover'); }
+    
+    /**
+     * @return GDO_Band
+     */
+    public function getBand() { return $this->getValue('album_band'); }
+    public function getBandID() { return $this->getVar('album_band'); }
+    
+    /**
+     * @return GDT_ImageFile
+     */
+    public function gdoCoverColumn() { return $this->gdoColumn('album_cover'); }
 
     ##############
     ### Render ###
     ##############
+    public function displayName() { return $this->display('album_title'); }
     public function displayTitle() { return $this->display('album_title'); }
     public function displayReleased() { return $this->gdoColumn('album_released')->renderCell(); }
-    public function displayBand() { return $this->gdoColumn('album_band')->renderChoice(); }
+//     public function displayBand() { return $this->gdoColumn('album_band')->renderChoice(); }
+//     public function displayCover() { return $this->gdoColumn('album_cover')->renderCell(); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/album.php', ['gdo' => $this]); }
-    public function renderChoice() { return sprintf('%s - %s', $this->displayTitle(), $this->displayBand()); }
+    public function renderChoice() { return GDT_Template::php('Audio', 'choice/album.php', ['album' => $this]); }
     
 }

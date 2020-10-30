@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Audio;
 
+use GDO\Core\GDO;
 use GDO\File\GDT_File;
 
 /**

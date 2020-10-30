@@ -46,6 +46,11 @@ final class CompleteGenre extends MethodCompletion
             }
         }
         
+        # sort exact match first
+        uasort($matches, function($a, $b) use($q) {
+            return $a === $q ? -1 : 1;
+        });
+        
         # render as json
         $json = [];
         foreach ($matches as $key => $value)

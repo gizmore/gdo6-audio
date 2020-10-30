@@ -26,7 +26,7 @@ final class SongCRUD extends MethodAudioCRUD
         {
             GDO_SongAlbum::addTrack($this->album, $song);
         }
-        return $this->message('msg_added_track', [$song->displayTitle(), $this->album->renderChoice()]);
+        return $this->message('msg_added_track', [$song->displayTitle(), $this->album->displayTitle()]);
     }
 
 }

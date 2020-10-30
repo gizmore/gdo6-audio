@@ -12,31 +12,48 @@ use GDO\Audio\GDO_Song;
 use GDO\Audio\GDO_Album;
 use GDO\Audio\GDO_SongAlbum;
 use GDO\Audio\GDT_Track;
+use GDO\UI\GDT_Divider;
+use GDO\Core\Website;
 
 final class AlbumSong extends MethodForm
 {
     public function formName() { return 'form_as'; }
     
+    /**
+     *  @var GDO_Album
+     */
     public $album;
     public function album(GDO_Album $album) { $this->album = $album; return $this; }
     
+    /**
+     * @var GDO_Song
+     */
     public $song;
     public function song(GDO_Song $song) { $this->song = $song; return $this; }
     
     public function createForm(GDT_Form $form)
     {
-        $form->addField(GDT_Album::make('as_album')->initial(Common::getRequestString('album_id')));
-
-        $tracks = GDO_SongAlbum::getSongs($this->album);
-        foreach ($tracks as $track)
+        $form->addField(GDT_Divider::make('div1')->label('tracks'));
+        $songs = GDO_SongAlbum::getSongs($this->album);
+        foreach ($songs as $song)
         {
-            $track = GDT_Track::make("track[{$track->getTrack()}]")->a
+            $track = GDT_Track::make("track[{$song->getTrack()}]")->album($this->album)->song($song);
+            $form->addField($track);
         }
         
-        $form->addField(GDT_Song::make('as_song')->initial(Common::getRequestString('song_id')));
+        $form->addField(GDT_Album::make('album_id')->initial(Common::getRequestString('album_id')));
+        $form->addField(GDT_Song::make('song_id')->initial(Common::getRequestString('song_id')));
         $form->addField(GDT_Submit::make());
         $form->addField(GDT_AntiCSRF::make());
     }
 
+    public function formValidated(GDT_Form $form)
+    {
+        $this->song = $form->getFormValue('song_id');
+        
+        GDO_SongAlbum::addTrack($this->album, $this->song);
+        $response = $this->message('msg_added_track', [$this->song->displayTitle(), $this->album->displayTitle()]);
+        return $response->add(Website::redirect($this->album->hrefEdit()));
+    }
     
 }

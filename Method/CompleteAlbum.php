@@ -33,6 +33,7 @@ final class CompleteAlbum extends MethodCompletionSearch
     
     public function renderJSON(GDO $gdo)
     {
+        /** @var $gdo GDO_Album **/
         return array(
             'id' => $gdo->getID(),
             'text' => $gdo->displayTitle(),
