@@ -80,7 +80,7 @@ final class GDO_Song extends GDO
      */
     public function getMusicians()
     {
-        return GDO_Musician::table()->select()->where("sm_song={$this->getID()}}")->exec()->fetchAllObjects();
+        return GDO_SongMusician::getMusicians($this);
     }
     
     /**

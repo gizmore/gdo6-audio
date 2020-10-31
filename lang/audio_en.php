@@ -18,6 +18,7 @@ return array(
 'cover' => 'Cover',
 'album' => 'Album',
 'song' => 'Song',
+'tracks' => 'Tracks',
 'released' => 'Released on',
 'founded' => 'Founded',
 'genre' => 'Genre',

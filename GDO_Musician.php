@@ -20,7 +20,6 @@ use GDO\DB\GDT_Virtual;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
 use GDO\User\GDT_Gender;
-use GDO\Audio\Method\SongMusician;
 
 final class GDO_Musician extends GDO
 {

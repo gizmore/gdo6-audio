@@ -3,6 +3,9 @@ namespace GDO\Audio\Method;
 
 use GDO\Audio\GDO_Album;
 use GDO\Audio\MethodAudioCRUD;
+use GDO\Core\GDO;
+use GDO\Form\GDT_Form;
+use GDO\Core\Website;
 
 final class AlbumCRUD extends MethodAudioCRUD
 {
@@ -22,6 +25,12 @@ final class AlbumCRUD extends MethodAudioCRUD
             add($crudSong->execute());
         }
         return parent::renderPage();
+    }
+    
+    public function afterCreate(GDT_Form $form, GDO $gdo)
+    {
+        /** @var $gdo GDO_Album **/
+        return Website::redirect($gdo->hrefEdit(), 12);
     }
     
 }

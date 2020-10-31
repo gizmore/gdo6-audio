@@ -4,6 +4,7 @@ namespace GDO\Audio;
 use GDO\Core\GDT;
 use GDO\UI\GDT_Label;
 use GDO\UI\GDT_Title;
+use GDO\UI\GDT_Divider;
 
 final class GDT_Track extends GDT
 {
@@ -20,13 +21,12 @@ final class GDT_Track extends GDT
     public function renderCard()
     {
         return
-        GDT_Label::make()->label('track_duration', [$this->getTrack(), $this->song->displayTitle(), $this->song->displayDuration()])->renderCell() . 
-        GDT_Title::make()->initial($this->song->getTitle())->renderCell();
+        GDT_Label::make()->label('track_duration', [$this->getTrack(), $this->song->displayTitle(), $this->song->displayDuration()])->renderCard();
     }
     
     public function renderForm()
     {
-        return $this->renderCell();
+        return sprintf('<div>%s</div>', $this->renderCell());
     }
     
     public function renderCell()

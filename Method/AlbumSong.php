@@ -52,8 +52,9 @@ final class AlbumSong extends MethodForm
         $this->song = $form->getFormValue('song_id');
         
         GDO_SongAlbum::addTrack($this->album, $this->song);
-        $response = $this->message('msg_added_track', [$this->song->displayTitle(), $this->album->displayTitle()]);
-        return $response->add(Website::redirect($this->album->hrefEdit()));
+        $this->message('msg_added_track', [$this->song->displayTitle(), $this->album->displayTitle()]);
+        $this->resetForm();
+        return $this->renderPage();
     }
     
 }

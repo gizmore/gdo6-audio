@@ -10,6 +10,9 @@ final class GDT_SongMusicianInstrument extends GDT
     public $song;
     public function song(GDO_Song $song) { $this->song = $song; return $this; }
     
+    public $musician;
+    public function musician(GDO_Musician $musician) { $this->musician = $musician; }
+    
     public function renderCard()
     {
         return 
