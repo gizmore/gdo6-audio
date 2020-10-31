@@ -34,6 +34,7 @@ return array(
 'age' => '(%s)',
 'musician_num_songs' => 'Songs: %s',
 'musician_num_instruments' => 'Instruments: %s',
+'featured' => 'Featured',
 
 # Nav
 'link_add_album' => 'Add Album',

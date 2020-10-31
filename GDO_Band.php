@@ -55,6 +55,7 @@ final class GDO_Band extends GDO
     ### Getter ###
     ##############
     public function getID() { return $this->getVar('band_id'); }
+    public function getGenre() { return $this->getVar('band_genre'); }
     
     ##############
     ### Render ###
