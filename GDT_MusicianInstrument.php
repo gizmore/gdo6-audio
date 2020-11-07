@@ -2,10 +2,9 @@
 namespace GDO\Audio;
 
 use GDO\Core\GDT;
-use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Label;
-use GDO\Invite\GDO_Invitation;
 use GDO\UI\GDT_Container;
+use GDO\UI\GDT_Link;
 
 final class GDT_MusicianInstrument extends GDT
 {
@@ -13,23 +12,30 @@ final class GDT_MusicianInstrument extends GDT
     public function song(GDO_Song $song) { $this->song = $song; return $this; }
     
     public $musician;
-    public function musician(GDO_Musician $musician) { $this->musician = $musician; }
+    public function musician(GDO_Musician $musician) { $this->musician = $musician; return $this; }
     
     public $instrument;
     public function instrument(GDT_Instrument $instrument) { $this->instrument = $instrument; return $this; }
     
     public function renderCard()
     {
-        return 
-        GDT_Link::make()->label($this->song->displayTitle())->href($this->song->hrefShow())->renderCell().
-        GDT_Label::make()->label($this->song->displayMusicianInstrument())->renderCell();
+        if ($this->musician)
+        {
+            return
+            sprintf('<label>%s</label>', $this->musician->displayName()).
+            sprintf('<span>%s</span>', $this->musician->getVar('sm_instrument'));
+        }
+        if ($this->song)
+        {
+            return GDT_Link::make()->href($this->song->hrefShow())->rawLabel($this->song->displayName())->initial($this->song->getVar('sm_instrument'))->renderCard();
+        }
     }
     
     public function renderForm()
     {
-        $musician = GDT_Label::make()->label('musician', [$this->musician->getCountry()->renderFlag(), $this->musician->displayName()]);
-        $instrument = GDT_Label::make()->rawLabel($this->instrument->displayLabel());
-        echo GDT_Container::makeWith($musician, $instrument)->renderForm();
+        $c = $this->musician->getCountry();
+        $musician = GDT_Label::make()->label('assigned_musician', [$c->renderFlag(), $this->musician->displayName(), $this->instrument->getVar()]);
+        echo GDT_Container::makeWith($musician)->renderForm();
     }
     
 }

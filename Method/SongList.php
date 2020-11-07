@@ -4,7 +4,6 @@ namespace GDO\Audio\Method;
 use GDO\Audio\GDO_Song;
 use GDO\Audio\GDT_Band;
 use GDO\Table\MethodQueryList;
-use GDO\Audio\GDT_Song;
 
 final class SongList extends MethodQueryList
 {
@@ -12,8 +11,13 @@ final class SongList extends MethodQueryList
     {
         return GDO_Song::table();
     }
+
+    public function isOrdered() { return true; }
+    public function defaultOrderField() { return 'song_created'; }
+    public function defaultOrderDirAsc() { return false; }
     
     public function isFiltered() { return true; }
+    
     
     public function gdoFilters()
     {

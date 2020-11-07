@@ -38,7 +38,7 @@ final class GDT_AlbumSubtitle extends GDT_Container
         {
             if ($this->band)
             {
-                $this->addField($this->band->gdoColumn('band_country'));
+                $this->addField($this->band->gdoColumn('band_country')->withName(false));
                 $this->addField(GDT_Link::make()->rawLabel($this->band->displayName())->href($this->band->hrefShow()));
             }
             if ($this->album)

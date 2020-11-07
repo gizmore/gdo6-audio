@@ -2,6 +2,7 @@
 namespace GDO\Audio;
 
 use GDO\UI\GDT_Container;
+use GDO\UI\GDT_Label;
 
 /**
  * Used as subtitle in cards and lists.
@@ -32,8 +33,10 @@ final class GDT_BandSubtitle extends GDT_Container
         if ( (!$this->getFields()) && ($this->band) )
         {
             $this->addField($this->band->gdoColumn('band_country')->withName(false));
-            $this->addField($this->band->gdoColumn('band_name'));
+            $this->addField(GDT_Label::make()->label('founded'));
             $this->addField($this->band->gdoColumn('band_founded'));
+            $this->addField(GDT_Label::make()->label('num_albums', [$this->band->getVar('band_albums')]));
+            $this->addField(GDT_Label::make()->label('num_songs', [$this->band->getVar('band_songs')]));
         }
     }
     

@@ -51,11 +51,12 @@ final class MusicianCRUD extends MethodAudioCRUD
             $musician = $gdo;
             $instrument = $form->getField('musician_instrument');
             GDO_SongMusician::connectMusician($song, $musician, $instrument);
-            Website::redirectMessage('msg_added_musician_to_song', [$musician->displayName(), $song->displayTitle(), $instrument->getValue()], $gdo->hrefEdit());
+            Website::redirectMessage('msg_added_musician_to_song', [$musician->displayName(), $song->displayTitle(), $instrument->getValue()], $song->hrefEdit());
         }
         else
         {
-            Website::redirectMessage('msg_added_musician', [$musician->displayName(), $song->displayTitle(), $instrument->getValue()], $gdo->hrefEdit());
+            $musician = $gdo;
+            Website::redirectMessage('msg_added_musician', [$musician->displayName()], $musician->hrefEdit());
         }
     }
     

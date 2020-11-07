@@ -36,13 +36,16 @@ final class SongMusician extends MethodForm
     {
         $form->addField(GDT_Song::make('song_id')->initial(Common::getRequestString('song_id')));
         $form->addField(GDT_Musician::make('musician_id')->initial(Common::getRequestString('musician_id')));
-        $form->addField(GDT_Instrument::make('instrument'));
+        $form->addField(GDT_Instrument::make('instrument')->notNull());
         
-        $form->addField(GDT_Divider::make('div1')->label('musician_instrument'));
-        foreach (GDO_SongMusician::getMusicians($this->song) as $musician)
+        if ($this->song)
         {
-            $mi = GDT_MusicianInstrument::make()->song($this->song)->musician($musician)->instrument(GDT_Instrument::make()->initial($musician->getInstrument()));
-            $form->addField($mi);
+            $form->addField(GDT_Divider::make('div1')->label('musicians'));
+            foreach (GDO_SongMusician::getMusicians($this->song) as $musician)
+            {
+                $mi = GDT_MusicianInstrument::make()->song($this->song)->musician($musician)->instrument(GDT_Instrument::make()->initial($musician->getInstrument()));
+                $form->addField($mi);
+            }
         }
         
         $form->addField(GDT_Submit::make());
@@ -62,9 +65,14 @@ final class SongMusician extends MethodForm
             $redirectHREF = $this->musician->hrefEdit();
         }
         $instrument = $form->getField('instrument');
-        GDO_SongMusician::connectMusician($this->song, $this->musician, $instrument);
-        $response = $this->message('msg_added_musician_to_song', [$this->musician->displayName(), $this->song->displayTitle(), $instrument->getValue()]);
-        return $response->add(Website::redirect($redirectHREF, 12));
+        
+        if ($this->musician && $this->song)
+        {
+            GDO_SongMusician::connectMusician($this->song, $this->musician, $form->getField('instrument'));
+            Website::redirectMessage('msg_added_musician_to_song', [$this->musician->displayName(), $this->song->displayTitle(), $instrument->getValue()], $redirectHREF);
+        }
+        
+        return parent::formValidated($form);
     }
     
 }

@@ -14,6 +14,7 @@ return array(
 'gdo_musician' => 'Musician',
     
 # GDT
+'play' => 'Play',
 'band' => 'Band',
 'cover' => 'Cover',
 'album' => 'Album',
@@ -27,12 +28,16 @@ return array(
 'bpm' => 'Beats per minute',
 'lyrics' => 'Lyrics',
 'song_original' => 'Original Song',
-'num_songs' => 'Songs available',
+'_num_songs' => 'Songs available',
+'_num_albums' => 'Albums available',
+'num_songs' => '%s Songs available',
+'num_albums' => '%s Albums available',
 'num_tracks' => '%s track(s)',
 'instrument' => 'Instrument',
-'musician' => 'Musician',
+'musician' => 'Artist',
+'musicians' => 'Artists',
 'track_duration' => '%s (%s)',
-'born' => 'born %s',
+'born' => 'Born %s',
 'age' => '(%s)',
 'musician_num_songs' => 'Songs: %s',
 'musician_num_instruments' => 'Instruments: %s',
@@ -55,20 +60,22 @@ return array(
 # BandCRUD
 'btn_add_album' => 'Add Album',
 'msg_band_created' => 'Your band has been created successfully.',
+# MusicianCRUD
+'msg_added_musician' => 'Added the musician %s.',
     
 # AlbumList
-'list_albumlist' => '%s Album(s) available',
+'list_audio_albumlist' => '%s Album(s) available',
 
 # SongList
-'list_songlist' => '%s Song(s) available',
-'band_cell' => '%s from %s on %s.',
+'list_audio_songlist' => '%s Song(s) available',
+'band_cell' => '%s %s on %s.',
 'audiofile' => 'Audiofile',
 
 # BandList
-'list_bandlist' => '%s Band(s) listed',
+'list_audio_bandlist' => '%s Band(s) listed',
 
 # MusicianList
-'list_musicianlist' => '%s Musician(s) listed',
+'list_audio_musicianlist' => '%s Musician(s) listed',
 'musician_born' => 'Born %s should be %s old by now',
 
 # AlbumSong
@@ -78,6 +85,7 @@ return array(
 # SongMusician
 'ft_audio_songmusician' => 'Assign Musician',
 'msg_added_musician_to_song' => 'You have added %s to %s playing the %s.',
+'assigned_musician' => '%s %s playing the %s',
     
 # Genres
 'enum_art_punk' => 'art_punk',

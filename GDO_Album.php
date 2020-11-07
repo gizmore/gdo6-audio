@@ -67,6 +67,8 @@ final class GDO_Album extends GDO
     public function getCover() { return $this->getValue('album_cover'); }
     public function getCoverId() { return $this->getVar('album_cover'); }
     
+    public function isFeatured() { return $this->getValue('album_featured'); }
+    
     /**
      * @return GDT_ImageFile
      */

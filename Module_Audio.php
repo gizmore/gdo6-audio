@@ -10,17 +10,21 @@ use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Menu;
 use GDO\User\GDO_User;
+use GDO\File\GDT_Filesize;
+use GDO\Core\Module_Core;
 
 /**
  * Audio utilities and Song/Album/Musician structure.
+ * Comes with soundmanager2 via yarn.
+ * Comes with sm2-ui-bar via third party code.
  * 
  * @author gizmore
- * @since 6.00
  * @version 6.10
+ * @since 6.08
  */
 final class Module_Audio extends GDO_Module
 {
-	public $module_priority = 30;
+	public $module_priority = 45;
 	
 	##################
 	### Permission ###
@@ -47,12 +51,15 @@ final class Module_Audio extends GDO_Module
 			GDT_Path::make('lame_mp3_path')->initial('/usr/bin/lame')->label('lamemp3_path'),
 		    GDT_Checkbox::make('allow_user_entries')->initial('1'),
 		    GDT_Checkbox::make('allow_guest_entries')->initial('0'),
+		    GDT_Filesize::make('max_audio_filesize')->initial('16777216'),
+// 		    GDT_Checkbox::make('fallback_flash')->initial('0'),
 		    GDT_Checkbox::make('hook_left_bar')->initial('1'),
 		);
 	}
 	public function cfgLamePath() { return $this->getConfigValue('lame_mp3_path'); }
 	public function cfgAllowUserEntries() { return $this->getConfigValue('allow_user_entries'); }
 	public function cfgAllowGuestEntries() { return $this->getConfigValue('allow_guest_entries'); }
+	public function cfgMaxAudioFilesize() { return $this->getConfigValue('max_audio_filesize'); }
 	public function cfgHookLeftBar() { return $this->getConfigValue('hook_left_bar'); }
 
 	###############
@@ -75,11 +82,21 @@ final class Module_Audio extends GDO_Module
 	####################
 	public function mp3Info(GDO_File $file)
 	{
-		$this->includeClass('3p/MP3File');
+	    $path = $this->filePath('3p/MP3File.php');
+	    require_once $path;
 		$mp3file = new MP3File($file->getPath());
 		$duration = $mp3file->getDuration();
 		$bitrate = $mp3file->getBitrate();
 		return [$duration, $bitrate];
+	}
+	
+	public function onIncludeScripts()
+	{
+	    $min = Module_Core::instance()->cfgMinifyJS() === 'no' ? '' : '-jsmin';
+	    $this->addBowerJavascript("soundmanager2/script/soundmanager2{$min}.js");
+	    $this->addJavascript('3p/sm2-bar-ui/bar-ui.js');
+	    $this->addCSS('3p/sm2-bar-ui/bar-ui.css');
+	    $this->addCSS('css/audio.css');
 	}
 	
 	#############

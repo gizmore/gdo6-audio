@@ -72,6 +72,7 @@ final class SongCRUD extends MethodAudioCRUD
             return $this->renderPage();
         }
         
+        $this->resetForm();
     }
 
     public function renderPage()

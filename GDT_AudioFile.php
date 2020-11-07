@@ -3,6 +3,7 @@ namespace GDO\Audio;
 
 use GDO\File\GDT_File;
 use GDO\Core\GDT_Template;
+use GDO\File\GDO_File;
 
 /**
  * MP3 audio file.
@@ -16,6 +17,7 @@ final class GDT_AudioFile extends GDT_File
 	{
 		parent::__construct();
 		$this->audioFile();
+		$this->maxsize(Module_Audio::instance()->cfgMaxAudioFilesize());
 	}
 	
 	public function audioFile()
@@ -37,9 +39,26 @@ final class GDT_AudioFile extends GDT_File
 		}
 	}
 	
+	############
+	### File ###
+	############
+	/**
+	 * @return GDO_File
+	 */
+	public function getFile() { return $this->getValue(); }
+	public function getFileID() { return $this->getVar(); }
+	
+	public function getHREFRange()
+	{
+	    return href('Audio', 'AudioRange', '&file='.$this->getFileID());
+	}
+	
 	#####################
 	### Player render ###
 	#####################
+	public $withDownload = false;
+	public function withDownload($withDownload=true) { $this->withDownload = $withDownload; return $this; }
+	
 	public $withPlayer = false;
 	public function withPlayer($withPlayer=true) { $this->withPlayer = $withPlayer; return $this; }
 	
@@ -58,4 +77,15 @@ final class GDT_AudioFile extends GDT_File
 	    }
 	}
 	
+	public function renderCard()
+	{
+	    if ($this->withPlayer)
+	    {
+	        return GDT_Template::php('Audio', 'card/audioplayer.php', ['field' => $this]);
+	    }
+	    else
+	    {
+	        return parent::renderCard();
+	    }
+	}
 }

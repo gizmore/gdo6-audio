@@ -42,6 +42,7 @@ final class GDO_Band extends GDO
             GDT_Country::make('band_country')->withCompletion(),
             GDT_Checkbox::make('band_featured')->label('featured')->initial('0'),
             GDT_Virtual::make('band_albums')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_album WHERE album_band=band_id"),
+            GDT_Virtual::make('band_songs')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_song WHERE song_band=band_id"),
             GDT_EditedAt::make('band_edited'),
             GDT_EditedBy::make('band_editor'),
             GDT_CreatedAt::make('band_created'),
@@ -56,6 +57,7 @@ final class GDO_Band extends GDO
     ##############
     public function getID() { return $this->getVar('band_id'); }
     public function getGenre() { return $this->getVar('band_genre'); }
+    public function isFeatured() { return $this->getValue('band_featured'); }
     
     ##############
     ### Render ###
@@ -76,25 +78,6 @@ final class GDO_Band extends GDO
     public function hrefEdit() { return href('Audio', 'BandCRUD', "&band_id={$this->getID()}"); }
     public function hrefShow() { return href('Audio', 'BandShow', "&band_id={$this->getID()}"); }
     public function hrefSongs() { return href('Audio', 'SongList', "&song_band={$this->getID()}"); }
+    public function hrefAlbums() { return href('Audio', 'AlbumList', "&album_band={$this->getID()}"); }
     
-    ##################
-    ### Statistics ###
-    ##################
-    public function numSongsAvailable()
-    {
-        if (null === ($songs = $this->tempGet('audio_songs_available')))
-        {
-            $songs = $this->querySongsAvailable();
-            $this->tempSet('audio_songs_available', $songs);
-            $this->recache();
-        }
-        return $songs;
-    }
-    
-    private function querySongsAvailable()
-    {
-        $query = GDO_Song::table()->select('COUNT(*)')->where("song_band={$this->getID()} AND song_deleted IS NULL");
-        return $query->exec()->fetchValue();
-    }
-
 }

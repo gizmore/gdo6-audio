@@ -36,7 +36,7 @@ final class GDO_Song extends GDO
             GDT_Band::make('song_band'),
             GDT_Genre::make('song_genre'),
             GDT_Language::make('song_language'),
-            GDT_AudioFile::make('song_file')->previewHREF(href('Audion', 'AudioFile', '&file='))->label('audiofile'),
+            GDT_AudioFile::make('song_file')->previewHREF(href('Audio', 'AudioFile', '&file='))->label('audiofile'),
             GDT_Lyrics::make('song_lyrics'),
             GDT_Duration::make('song_duration'),
             GDT_BPM::make('song_bpm'),
@@ -64,6 +64,8 @@ final class GDO_Song extends GDO
     public function getID() { return $this->getVar('song_id'); }
     public function getTitle() { return $this->getVar('song_title'); }
     public function getTrack() { return $this->getVar('sa_track'); }
+    public function isFeatured() { return $this->getValue('song_featured'); }
+    
     /**
      * @return GDO_Song
      */

@@ -7,6 +7,11 @@ use GDO\Audio\GDT_SongSubtitle;
 
 $list = GDT_ListItem::make('band-'.$gdo->getID());
 
+if ($gdo->isFeatured())
+{
+    $list->addClass('featured');
+}
+
 // $list->avatar($gdo->gdoColumnCopy('album_cover')->variant('thumb')->imageSize(48, 48)->withFileInfo(false));
 $list->title(GDT_Link::make()->rawLabel($gdo->display('song_title'))->href($gdo->hrefShow()));
 $list->subtitle(GDT_SongSubtitle::make()->song($gdo));

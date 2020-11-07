@@ -33,9 +33,9 @@ final class GDO_Musician extends GDO
             GDT_Gender::make('musician_gender'),
             GDT_Country::make('musician_country')->withCompletion(),
             GDT_Birthdate::make('musician_birthday'),
-            GDT_ImageFile::make('musician_photo')->scaledVersion('thumb', 64, 64),
+            GDT_ImageFile::make('musician_photo')->scaledVersion('thumb', 64, 64)->previewHREF(href('Audio', 'MusicianPhoto', '&file=')),
             GDT_Checkbox::make('musician_featured')->label('featured')->initial('0'),
-            GDT_Virtual::make('musician_songs')->label('num_songs')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(DISTINCT(sm_song)) FROM gdo_songmusician WHERE sm_musician = musician_id"),
+            GDT_Virtual::make('musician_songs')->label('_num_songs')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(DISTINCT(sm_song)) FROM gdo_songmusician WHERE sm_musician = musician_id"),
             GDT_Virtual::make('musician_instruments')->label('num_instruments')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(DISTINCT(sm_instrument)) FROM gdo_songmusician WHERE sm_musician = musician_id"),
             GDT_EditedAt::make('musician_edited'),
             GDT_EditedBy::make('musician_editor'),
@@ -54,9 +54,14 @@ final class GDO_Musician extends GDO
     public function getNumSongs() { return $this->getVar('musician_songs'); }
     public function getNumInstruments() { return $this->getVar('musician_instruments'); }
     public function getInstrument() { return $this->getVar('sm_instrument'); }
+    public function isFeatured() { return $this->getValue('musician_featured'); }
     
     /** @return GDO_Country **/
-    public function getCountry() { return $this->getValue('musician_country'); }
+    public function getCountry()
+    {
+        $country = $this->getValue('musician_country');
+        return $country ? $country : GDO_Country::unknownCountry();
+    }
     
     /** @return GDO_File **/
     public function getPhoto() { return $this->getValue('musician_photo'); }
