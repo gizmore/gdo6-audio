@@ -1,8 +1,8 @@
 <?php
 namespace GDO\Audio;
 
-use GDO\Core\GDO;
 use GDO\File\GDT_File;
+use GDO\Core\GDT_Template;
 
 /**
  * MP3 audio file.
@@ -35,6 +35,27 @@ final class GDT_AudioFile extends GDT_File
     			'file_bitrate' => $info[1],
     		));
 		}
+	}
+	
+	#####################
+	### Player render ###
+	#####################
+	public $withPlayer = false;
+	public function withPlayer($withPlayer=true) { $this->withPlayer = $withPlayer; return $this; }
+	
+	public $withControls = false;
+	public function withControls($withControls=true) { $this->withControls = $withControls; return $this; }
+	
+	public function renderCell()
+	{
+	    if ($this->withPlayer)
+	    {
+	        return GDT_Template::php('Audio', 'cell/audioplayer.php', ['field' => $this]);
+	    }
+	    else
+	    {
+	        return parent::renderCell();
+	    }
 	}
 	
 }

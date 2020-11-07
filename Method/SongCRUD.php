@@ -8,6 +8,9 @@ use GDO\Core\GDO;
 use GDO\Form\GDT_Form;
 use GDO\Audio\GDO_SongAlbum;
 use GDO\Audio\GDO_Band;
+use GDO\Util\Common;
+use GDO\Core\GDT;
+use GDO\Core\Website;
 
 final class SongCRUD extends MethodAudioCRUD
 {
@@ -22,13 +25,38 @@ final class SongCRUD extends MethodAudioCRUD
     public function formName() { return 'form_song'; }
     public function crudName() { return 'song_id'; }
     
+    public function init()
+    {
+        parent::init();
+        if ($id = Common::getGetString('album_id'))
+        {
+            if ($album = GDO_Album::table()->find($id, false))
+            {
+                $this->album($album);
+            }
+        }
+    }
+    
     public function createForm(GDT_Form $form)
     {
         parent::createForm($form);
+        
         if ($this->band)
         {
-            $form->getField('song_band')->initialValue($this->band);
-            $form->getField('song_genre')->initial($this->band->getGenre());
+            $form->getField('song_band')->initial($this->band->getID());
+            
+        }
+        $genre = $form->getField('song_genre');
+        if (!$genre->hasVar())
+        {
+            if ($this->band && $this->band->getGenre())
+            {
+                $genre->initial($this->band->getGenre());
+            }
+            elseif ($this->album && $this->album->getGenre())
+            {
+                $genre->initial($this->album->getGenre());
+            }
         }
     }
     
@@ -39,10 +67,11 @@ final class SongCRUD extends MethodAudioCRUD
         if ($this->album)
         {
             GDO_SongAlbum::addTrack($this->album, $song);
-            $this->message('msg_added_track', [$song->displayTitle(), $this->album->displayTitle()]);
-            $this->resetForm();
+            Website::redirectMessage('msg_added_track', [$song->displayTitle(), $this->album->displayTitle()], $this->album->hrefEdit());
+            
             return $this->renderPage();
         }
+        
     }
 
     public function renderPage()
@@ -55,6 +84,8 @@ final class SongCRUD extends MethodAudioCRUD
             add($setMusician->execute())->
             add($crudMusician->execute());
         }
+        
+        $this->resetForm();
         return parent::renderPage();
     }
 

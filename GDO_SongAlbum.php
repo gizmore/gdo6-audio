@@ -2,7 +2,6 @@
 namespace GDO\Audio;
 
 use GDO\Core\GDO;
-use GDO\DB\GDT_AutoInc;
 use GDO\DB\GDT_UInt;
 
 final class GDO_SongAlbum extends GDO
@@ -10,9 +9,8 @@ final class GDO_SongAlbum extends GDO
     public function gdoColumns()
     {
         return array(
-            GDT_AutoInc::make('sa_id'),
-            GDT_Album::make('sa_album')->notNull(),
-            GDT_Song::make('sa_song')->notNull(),
+            GDT_Album::make('sa_album')->primary(),
+            GDT_Song::make('sa_song')->primary(),
             GDT_UInt::make('sa_track')->bytes(1),
         );
     }

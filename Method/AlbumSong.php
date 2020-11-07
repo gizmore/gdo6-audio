@@ -33,6 +33,7 @@ final class AlbumSong extends MethodForm
     
     public function createForm(GDT_Form $form)
     {
+        $form->gdo = $this->album;
         $form->addField(GDT_Divider::make('div1')->label('tracks'));
         $songs = GDO_SongAlbum::getSongs($this->album);
         foreach ($songs as $song)
@@ -53,6 +54,7 @@ final class AlbumSong extends MethodForm
         
         GDO_SongAlbum::addTrack($this->album, $this->song);
         $this->message('msg_added_track', [$this->song->displayTitle(), $this->album->displayTitle()]);
+//         $form->gdo = $this->album;
         $this->resetForm();
         return $this->renderPage();
     }

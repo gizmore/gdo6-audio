@@ -68,15 +68,18 @@ final class GDO_Album extends GDO
     public function getCoverId() { return $this->getVar('album_cover'); }
     
     /**
+     * @return GDT_ImageFile
+     */
+    public function gdoCoverColumn() { return $this->gdoColumn('album_cover'); }
+
+    /**
      * @return GDO_Band
      */
     public function getBand() { return $this->getValue('album_band'); }
     public function getBandID() { return $this->getVar('album_band'); }
     
-    /**
-     * @return GDT_ImageFile
-     */
-    public function gdoCoverColumn() { return $this->gdoColumn('album_cover'); }
+    public function getGenre() { return $this->getVar('album_genre'); }
+    
 
     ##############
     ### Render ###

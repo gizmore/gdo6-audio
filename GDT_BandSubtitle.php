@@ -31,7 +31,7 @@ final class GDT_BandSubtitle extends GDT_Container
     {
         if ( (!$this->getFields()) && ($this->band) )
         {
-            $this->addField($this->band->gdoColumn('band_country'));
+            $this->addField($this->band->gdoColumn('band_country')->withName(false));
             $this->addField($this->band->gdoColumn('band_name'));
             $this->addField($this->band->gdoColumn('band_founded'));
         }

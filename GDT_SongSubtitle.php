@@ -34,7 +34,7 @@ final class GDT_SongSubtitle extends GDT_Container
         {
             if ($this->band)
             {
-                $this->addField($this->band->gdoColumn('band_country'));
+                $this->addField($this->band->gdoColumn('band_country')->withName(false));
                 $this->addField($this->band->gdoColumn('band_name'));
             }
             $this->addField($this->song->gdoColumn('song_released'));

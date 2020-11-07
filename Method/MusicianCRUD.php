@@ -8,6 +8,7 @@ use GDO\Core\GDO;
 use GDO\Form\GDT_Form;
 use GDO\Audio\GDO_SongMusician;
 use GDO\Audio\GDT_Instrument;
+use GDO\Core\Website;
 
 final class MusicianCRUD extends MethodAudioCRUD
 {
@@ -42,16 +43,19 @@ final class MusicianCRUD extends MethodAudioCRUD
     
     public function afterCreate(GDT_Form $form, GDO $gdo)
     {
+        $this->resetForm();
+        
         if ($song = $this->song)
         {
             /** @var $musician GDO_Musician **/
             $musician = $gdo;
             $instrument = $form->getField('musician_instrument');
-            if ($song)
-            {
-                GDO_SongMusician::connectMusician($song, $musician, $instrument);
-                return $this->message('msg_added_musician_to_song', [$musician->displayName(), $song->displayTitle(), $instrument->getValue()]);
-            }
+            GDO_SongMusician::connectMusician($song, $musician, $instrument);
+            Website::redirectMessage('msg_added_musician_to_song', [$musician->displayName(), $song->displayTitle(), $instrument->getValue()], $gdo->hrefEdit());
+        }
+        else
+        {
+            Website::redirectMessage('msg_added_musician', [$musician->displayName(), $song->displayTitle(), $instrument->getValue()], $gdo->hrefEdit());
         }
     }
     

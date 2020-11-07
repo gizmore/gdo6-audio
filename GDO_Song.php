@@ -32,11 +32,11 @@ final class GDO_Song extends GDO
         return array(
             GDT_AutoInc::make('song_id'),
             GDT_Title::make('song_title')->notNull(),
-            GDT_Band::make('song_band'),
             GDT_Song::make('song_original')->label('song_original'), # for remixes
-            GDT_AudioFile::make('song_file')->label('audiofile'),
+            GDT_Band::make('song_band'),
             GDT_Genre::make('song_genre'),
             GDT_Language::make('song_language'),
+            GDT_AudioFile::make('song_file')->previewHREF(href('Audion', 'AudioFile', '&file='))->label('audiofile'),
             GDT_Lyrics::make('song_lyrics'),
             GDT_Duration::make('song_duration'),
             GDT_BPM::make('song_bpm'),

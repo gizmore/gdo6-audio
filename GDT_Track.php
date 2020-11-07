@@ -5,6 +5,7 @@ use GDO\Core\GDT;
 use GDO\UI\GDT_Label;
 use GDO\UI\GDT_Title;
 use GDO\UI\GDT_Divider;
+use GDO\UI\GDT_Link;
 
 final class GDT_Track extends GDT
 {
@@ -20,8 +21,8 @@ final class GDT_Track extends GDT
 
     public function renderCard()
     {
-        return
-        GDT_Label::make()->label('track_duration', [$this->getTrack(), $this->song->displayTitle(), $this->song->displayDuration()])->renderCard();
+        return '<label>' . t('track') . sprintf(' %02d', $this->getTrack()) . '</label>' .
+            GDT_Link::make()->href($this->song->hrefShow())->label(t('track_duration', [$this->song->displayTitle(), $this->song->displayDuration()]))->renderCell();
     }
     
     public function renderForm()

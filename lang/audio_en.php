@@ -18,6 +18,7 @@ return array(
 'cover' => 'Cover',
 'album' => 'Album',
 'song' => 'Song',
+'track' => 'Track',
 'tracks' => 'Tracks',
 'released' => 'Released on',
 'founded' => 'Founded',
@@ -30,12 +31,13 @@ return array(
 'num_tracks' => '%s track(s)',
 'instrument' => 'Instrument',
 'musician' => 'Musician',
-'track_duration' => 'Track %s - %s (%s)',
+'track_duration' => '%s (%s)',
 'born' => 'born %s',
 'age' => '(%s)',
 'musician_num_songs' => 'Songs: %s',
 'musician_num_instruments' => 'Instruments: %s',
 'featured' => 'Featured',
+'err_no_html_audio' => 'Your browser does not support the audio element.',
 
 # Nav
 'link_add_album' => 'Add Album',
@@ -48,7 +50,12 @@ return array(
 'link_band_list' => 'List Bands',
     
 # AlbumCRUD
-
+'msg_album_created' => 'The album has been created successfully.',
+'btn_add_song' => 'Add Song',
+# BandCRUD
+'btn_add_album' => 'Add Album',
+'msg_band_created' => 'Your band has been created successfully.',
+    
 # AlbumList
 'list_albumlist' => '%s Album(s) available',
 

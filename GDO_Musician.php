@@ -20,6 +20,8 @@ use GDO\DB\GDT_Virtual;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
 use GDO\User\GDT_Gender;
+use GDO\Country\GDO_Country;
+use GDO\File\GDO_File;
 
 final class GDO_Musician extends GDO
 {
@@ -51,6 +53,14 @@ final class GDO_Musician extends GDO
     public function getBirthdate() { return $this->getVar('musician_birthday'); }
     public function getNumSongs() { return $this->getVar('musician_songs'); }
     public function getNumInstruments() { return $this->getVar('musician_instruments'); }
+    public function getInstrument() { return $this->getVar('sm_instrument'); }
+    
+    /** @return GDO_Country **/
+    public function getCountry() { return $this->getValue('musician_country'); }
+    
+    /** @return GDO_File **/
+    public function getPhoto() { return $this->getValue('musician_photo'); }
+    public function getPhotoID() { return $this->getVar('musician_photo'); }
     
     ############
     ### Perm ###

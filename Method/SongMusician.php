@@ -13,6 +13,8 @@ use GDO\Audio\GDO_Musician;
 use GDO\Audio\GDO_SongMusician;
 use GDO\Audio\GDT_Musician;
 use GDO\Audio\GDT_Instrument;
+use GDO\Audio\GDT_MusicianInstrument;
+use GDO\UI\GDT_Divider;
 
 final class SongMusician extends MethodForm
 {
@@ -35,6 +37,14 @@ final class SongMusician extends MethodForm
         $form->addField(GDT_Song::make('song_id')->initial(Common::getRequestString('song_id')));
         $form->addField(GDT_Musician::make('musician_id')->initial(Common::getRequestString('musician_id')));
         $form->addField(GDT_Instrument::make('instrument'));
+        
+        $form->addField(GDT_Divider::make('div1')->label('musician_instrument'));
+        foreach (GDO_SongMusician::getMusicians($this->song) as $musician)
+        {
+            $mi = GDT_MusicianInstrument::make()->song($this->song)->musician($musician)->instrument(GDT_Instrument::make()->initial($musician->getInstrument()));
+            $form->addField($mi);
+        }
+        
         $form->addField(GDT_Submit::make());
         $form->addField(GDT_AntiCSRF::make());
     }

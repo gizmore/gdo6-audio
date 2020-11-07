@@ -63,7 +63,7 @@ final class GDO_Band extends GDO
     public function displayName() { return $this->display('band_name'); }
     public function displayGenre() { return $this->gdoColumn('band_genre')->renderCell(); }
     public function displayFounded() { return $this->gdoColumn('band_founded')->renderCell(); }
-    public function displayCountry() { return $this->gdoColumn('band_country')->renderCell(); }
+    public function displayCountry() { return $this->gdoColumn('band_country')->withName(false)->renderCell(); }
     public function renderCell() { return GDT_Template::php('Audio', 'cell/band.php', ['gdo' => $this]); }
     public function renderList() { return GDT_Template::php('Audio', 'list/band.php', ['gdo' => $this]); }
     public function renderCard() { return GDT_Template::php('Audio', 'card/band.php', ['gdo' => $this]); }
@@ -74,8 +74,8 @@ final class GDO_Band extends GDO
     ##################
     public function canEdit(GDO_User $user=null) { return Module_Audio::instance()->canEdit($user); }
     public function hrefEdit() { return href('Audio', 'BandCRUD', "&band_id={$this->getID()}"); }
-    public function hrefShow() { return href('Audio', 'BandShow', "&id={$this->getID()}"); }
-    public function hrefSongs() { return href('Audio', 'SongList'); }
+    public function hrefShow() { return href('Audio', 'BandShow', "&band_id={$this->getID()}"); }
+    public function hrefSongs() { return href('Audio', 'SongList', "&song_band={$this->getID()}"); }
     
     ##################
     ### Statistics ###

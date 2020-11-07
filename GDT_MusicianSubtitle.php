@@ -33,7 +33,7 @@ final class GDT_MusicianSubtitle extends GDT_Container
         if (!$this->getFields())
         {
             $m = $this->musician;
-            $this->addField($m->gdoColumn('musician_country'));
+            $this->addField($m->gdoColumn('musician_country')->withName(false));
             $this->addField(GDT_Label::make()->label('born', [$m->displayBirthdate()]));
             $this->addField(GDT_Label::make()->label('age', [$m->displayAge()]));
             $this->addField(GDT_Label::make()->label('musician_num_songs', [$m->getNumSongs()]));
