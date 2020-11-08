@@ -9,7 +9,6 @@ use GDO\Form\GDT_Form;
 use GDO\Audio\GDO_SongAlbum;
 use GDO\Audio\GDO_Band;
 use GDO\Util\Common;
-use GDO\Core\GDT;
 use GDO\Core\Website;
 
 final class SongCRUD extends MethodAudioCRUD
@@ -68,11 +67,10 @@ final class SongCRUD extends MethodAudioCRUD
         {
             GDO_SongAlbum::addTrack($this->album, $song);
             Website::redirectMessage('msg_added_track', [$song->displayTitle(), $this->album->displayTitle()], $this->album->hrefEdit());
-            
             return $this->renderPage();
         }
         
-        $this->resetForm();
+//         $this->resetForm();
     }
 
     public function renderPage()
@@ -86,7 +84,7 @@ final class SongCRUD extends MethodAudioCRUD
             add($crudMusician->execute());
         }
         
-        $this->resetForm();
+//         $this->resetForm();
         return parent::renderPage();
     }
 

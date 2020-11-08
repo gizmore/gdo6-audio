@@ -43,6 +43,7 @@ return array(
 'musician_num_instruments' => 'Instruments: %s',
 'featured' => 'Featured',
 'err_no_html_audio' => 'Your browser does not support the audio element.',
+'menu_audio' => 'Audio',
 
 # Nav
 'link_add_album' => 'Add Album',

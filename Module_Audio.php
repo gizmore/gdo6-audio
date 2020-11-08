@@ -93,7 +93,7 @@ final class Module_Audio extends GDO_Module
 	public function onIncludeScripts()
 	{
 	    $min = Module_Core::instance()->cfgMinifyJS() === 'no' ? '' : '-jsmin';
-	    $this->addBowerJavascript("soundmanager2/script/soundmanager2{$min}.js");
+	    $this->addBowerJavascript("soundmanager2/script/soundmanager2-nodebug{$min}.js");
 	    $this->addJavascript('3p/sm2-bar-ui/bar-ui.js');
 	    $this->addCSS('3p/sm2-bar-ui/bar-ui.css');
 	    $this->addCSS('css/audio.css');
@@ -110,7 +110,7 @@ final class Module_Audio extends GDO_Module
 	{
 	    if ($this->cfgHookLeftBar())
 	    {
-	        $menu = GDT_Menu::make();
+	        $menu = GDT_Menu::make('menu_audio');
 	        $nav->addField($menu);
 
 	        $can = $this->canEdit();
