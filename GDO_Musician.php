@@ -17,6 +17,7 @@ use GDO\File\GDT_ImageFile;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_UInt;
 use GDO\DB\GDT_Virtual;
+use GDO\UI\GDT_Message;
 use GDO\User\GDO_User;
 use GDO\Date\Time;
 use GDO\User\GDT_Gender;
@@ -30,6 +31,7 @@ final class GDO_Musician extends GDO
         return array(
             GDT_AutoInc::make('musician_id'),
             GDT_String::make('musician_name')->label('name')->unique()->notNull(),
+            GDT_Message::make('musician_description')->label('description'),
             GDT_Gender::make('musician_gender'),
             GDT_Country::make('musician_country')->withCompletion(),
             GDT_Birthdate::make('musician_birthday'),

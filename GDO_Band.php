@@ -9,6 +9,7 @@ use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_EditedAt;
 use GDO\DB\GDT_EditedBy;
 use GDO\Date\GDT_Date;
+use GDO\UI\GDT_Message;
 use GDO\UI\GDT_Title;
 use GDO\Country\GDT_Country;
 use GDO\DB\GDT_DeletedAt;
@@ -37,6 +38,7 @@ final class GDO_Band extends GDO
         return array(
             GDT_AutoInc::make('band_id'),
             GDT_Title::make('band_name')->label('name')->notNull()->unique(),
+            GDT_Message::make('band_description')->label('description'),
             GDT_Genre::make('band_genre'),
             GDT_Date::make('band_founded')->label('founded'),
             GDT_Country::make('band_country')->withCompletion(),

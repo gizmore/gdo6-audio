@@ -2,9 +2,9 @@
 namespace GDO\Audio\Method;
 
 use GDO\Core\Method;
-use GDO\File\GDT_File;
 use GDO\Audio\GDO_Song;
 use GDO\File\Method\GetFile;
+use GDO\Audio\GDT_AudioFile;
 
 /**
  * Get the raw audio file for a song.
@@ -16,7 +16,7 @@ final class AudioFile extends Method
     public function gdoParameters()
     {
         return [
-            GDT_File::make('file')->notNull(),
+            GDT_AudioFile::make('file')->notNull(),
         ];
     }
     

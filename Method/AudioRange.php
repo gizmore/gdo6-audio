@@ -8,6 +8,7 @@ use GDO\File\GDT_File;
 use GDO\Audio\GDO_Song;
 use GDO\Net\Stream;
 use GDO\DB\GDT_String;
+use GDO\Audio\GDT_AudioFile;
 
 /**
  * Get the raw audio file for a song.
@@ -19,7 +20,7 @@ final class AudioRange extends Method
     public function gdoParameters()
     {
         return [
-            GDT_File::make('file')->notNull(),
+            GDT_AudioFile::make('file')->notNull(),
             GDT_String::make('variant'),
         ];
     }

@@ -3,6 +3,7 @@ namespace GDO\Audio;
 
 use GDO\Core\GDO;
 use GDO\DB\GDT_AutoInc;
+use GDO\UI\GDT_Message;
 use GDO\UI\GDT_Title;
 use GDO\Date\GDT_Date;
 use GDO\DB\GDT_CreatedAt;
@@ -36,6 +37,7 @@ final class GDO_Album extends GDO
         return array(
             GDT_AutoInc::make('album_id'),
             GDT_Title::make('album_title')->max(128)->notNull(),
+            GDT_Message::make('album_description')->label('description'),
             GDT_Genre::make('album_genre'),
             GDT_Band::make('album_band'),
             GDT_Date::make('album_released')->label('released'),

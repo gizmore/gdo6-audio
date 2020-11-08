@@ -17,6 +17,7 @@ use GDO\Core\GDT_Template;
 use GDO\File\GDO_File;
 use GDO\Date\GDT_Duration;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_Message;
 
 /**
  * A music song entity.
@@ -38,6 +39,7 @@ final class GDO_Song extends GDO
             GDT_Language::make('song_language'),
             GDT_AudioFile::make('song_file')->previewHREF(href('Audio', 'AudioFile', '&file='))->label('audiofile'),
             GDT_Lyrics::make('song_lyrics'),
+            GDT_Message::make('song_description')->label('description'),
             GDT_Duration::make('song_duration'),
             GDT_BPM::make('song_bpm'),
             GDT_Date::make('song_released')->label('released'),
@@ -57,6 +59,7 @@ final class GDO_Song extends GDO
     public function canEdit(GDO_User $user=null) { return Module_Audio::instance()->canEdit($user); }
     public function hrefEdit() { return href('Audio', 'SongCRUD', "&song_id={$this->getID()}"); }
     public function hrefShow() { return href('Audio', 'SongShow', "&id={$this->getID()}"); }
+    public function hrefPlay() { return href('Audio', 'AudioRange', "&file={$this->getFileID()}"); }
     
     ##############
     ### Getter ###
