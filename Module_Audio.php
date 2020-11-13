@@ -12,6 +12,7 @@ use GDO\UI\GDT_Menu;
 use GDO\User\GDO_User;
 use GDO\File\GDT_Filesize;
 use GDO\Core\Module_Core;
+use GDO\UI\GDT_Page;
 
 /**
  * Audio utilities and Song/Album/Musician structure.
@@ -106,10 +107,11 @@ final class Module_Audio extends GDO_Module
 	 * Add all crud and list to the left menu.
 	 * @param GDT_Bar $nav
 	 */
-	public function hookLeftBar(GDT_Bar $nav)
+	public function onInitSidebar()
 	{
-	    if ($this->cfgHookLeftBar())
+// 	    if ($this->cfgHookLeftBar())
 	    {
+    	    $nav = GDT_Page::$INSTANCE->leftNav;
 	        $menu = GDT_Menu::make('menu_audio');
 	        $nav->addField($menu);
 
