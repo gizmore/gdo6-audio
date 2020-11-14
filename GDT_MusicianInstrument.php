@@ -27,7 +27,7 @@ final class GDT_MusicianInstrument extends GDT
         }
         if ($this->song)
         {
-            return GDT_Link::make()->href($this->song->hrefShow())->rawLabel($this->song->displayName())->initial($this->song->getVar('sm_instrument'))->renderCard();
+            return GDT_Link::make()->href($this->song->hrefShow())->labelRaw($this->song->displayName())->initial($this->song->getVar('sm_instrument'))->renderCard();
         }
     }
     

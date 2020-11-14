@@ -99,6 +99,7 @@ final class GDO_Song extends GDO
     ##############
     public function displayName() { return $this->display('song_title'); }
     public function displayTitle() { return $this->display('song_title'); }
+    public function displayLyrics() { return $this->getVar('song_lyrics'); }
     public function displayGenre() { return $this->gdoColumn('song_genre'); }
     public function displayDuration() { return $this->gdoColumn('song_duration')->renderCell(); }
     public function displayMusicianInstrument() { return $this->display('sm_instrument'); }

@@ -21,9 +21,9 @@ final class CompleteAlbum extends MethodCompletionSearch
         return GDO_Album::table();
     }
     
-    public function gdoQuery()
+    public function getQuery()
     {
-        return parent::gdoQuery()->where('album_deleted IS NULL');
+        return parent::getQuery()->where('album_deleted IS NULL');
     }
     
     public function gdoHeaderColumns()

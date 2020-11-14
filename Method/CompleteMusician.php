@@ -21,9 +21,9 @@ final class CompleteMusician extends MethodCompletionSearch
         return GDO_Musician::table();
     }
     
-    public function gdoQuery()
+    public function getQuery()
     {
-        return parent::gdoQuery()->where('musician_deleted IS NULL');
+        return parent::getQuery()->where('musician_deleted IS NULL');
     }
     
     public function gdoHeaderColumns()

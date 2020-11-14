@@ -13,7 +13,7 @@ if ($gdo->isFeatured())
 }
 
 $list->avatar($gdo->gdoColumnCopy('musician_photo')->variant('thumb')->previewHREF(href('Audio', 'MusicianPhoto', '&file='))->imageSize(48, 48)->withFileInfo(false));
-$list->title(GDT_Link::make()->rawLabel($gdo->display('musician_name'))->href($gdo->hrefShow()));
+$list->title(GDT_Link::make()->labelRaw($gdo->display('musician_name'))->href($gdo->hrefShow()));
 $list->subtitle(GDT_MusicianSubtitle::make()->musician($gdo));
 
 echo $list->render();

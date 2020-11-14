@@ -2,28 +2,29 @@
 namespace GDO\Audio\Method;
 
 use GDO\Audio\GDO_Song;
-use GDO\Audio\GDT_Band;
 use GDO\Table\MethodQueryList;
 
+/**
+ * List of songs.
+ * @author gizmore
+ * @version 6.10
+ * @since 6.10
+ */
 final class SongList extends MethodQueryList
 {
-    public function gdoTable()
-    {
-        return GDO_Song::table();
-    }
+    public function gdoTable() { return GDO_Song::table(); }
 
-    public function isOrdered() { return true; }
-    public function defaultOrderField() { return 'song_created'; }
-    public function defaultOrderDirAsc() { return false; }
+    public function getDefaultOrder() { return 'song_created'; }
+    public function getDefaultOrderDir() { return false; }
     
-    public function isFiltered() { return true; }
-    
-    
-    public function gdoFilters()
+    public function gdoHeaders()
     {
-        return array(
-            GDT_Band::make('song_band'),
-        );
+        $t = $this->gdoTable();
+        return [
+            $t->gdoColumn('song_title'),
+            $t->gdoColumn('song_lyrics'),
+            $t->gdoColumn('song_description'),
+        ];
     }
 
 }

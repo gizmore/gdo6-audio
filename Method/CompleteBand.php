@@ -21,9 +21,9 @@ final class CompleteBand extends MethodCompletionSearch
         return GDO_Band::table();
     }
     
-    public function gdoQuery()
+    public function getQuery()
     {
-        return parent::gdoQuery()->where('band_deleted IS NULL');
+        return parent::getQuery()->where('band_deleted IS NULL');
     }
     
     public function gdoHeaderColumns()

@@ -22,9 +22,9 @@ final class CompleteSong extends MethodCompletionSearch
         return GDO_Song::table();
     }
     
-    public function gdoQuery()
+    public function getQuery()
     {
-        return parent::gdoQuery()->where('song_deleted IS NULL');
+        return parent::getQuery()->where('song_deleted IS NULL');
     }
     
     public function gdoHeaderColumns()
