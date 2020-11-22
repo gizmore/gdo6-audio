@@ -43,7 +43,7 @@ final class GDO_Song extends GDO
             GDT_Duration::make('song_duration'),
             GDT_BPM::make('song_bpm'),
             GDT_Date::make('song_released')->label('released'),
-            GDT_Checkbox::make('song_featured')->label('featured')->initial('0'),
+            GDT_Checkbox::make('song_featured')->label('featured')->initial('0')->hidden(),
             GDT_EditedAt::make('song_edited'),
             GDT_EditedBy::make('song_editor'),
             GDT_CreatedAt::make('song_created'),

@@ -42,7 +42,7 @@ final class GDO_Band extends GDO
             GDT_Genre::make('band_genre'),
             GDT_Date::make('band_founded')->label('founded'),
             GDT_Country::make('band_country')->withCompletion(),
-            GDT_Checkbox::make('band_featured')->label('featured')->initial('0'),
+            GDT_Checkbox::make('band_featured')->label('featured')->initial('0')->hidden(),
             GDT_Virtual::make('band_albums')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_album WHERE album_band=band_id"),
             GDT_Virtual::make('band_songs')->gdtType(GDT_UInt::class)->subquery("SELECT COUNT(*) FROM gdo_song WHERE song_band=band_id"),
             GDT_EditedAt::make('band_edited'),

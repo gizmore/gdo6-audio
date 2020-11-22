@@ -9,12 +9,12 @@ final class AlbumList extends MethodQueryList
 {
     public function gdoTable() { return GDO_Album::table(); }
     public function isFiltered() { return true; }
-    public function gdoHeaders()
-    {
-        return [
-            GDT_Band::make('album_band'),
-        ];
-    }
+//     public function gdoHeaders()
+//     {
+//         return [
+//             GDT_Band::make('album_band'),
+//         ];
+//     }
     
 
 }
