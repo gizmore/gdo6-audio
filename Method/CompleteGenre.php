@@ -4,6 +4,8 @@ namespace GDO\Audio\Method;
 use GDO\Core\MethodCompletion;
 use GDO\Audio\GDT_Genre;
 use GDO\Core\Website;
+use GDO\Audio\GDO_Song;
+use GDO\Audio\GDO_Band;
 
 /**
  * Auto completion for genres
@@ -21,6 +23,15 @@ final class CompleteGenre extends MethodCompletion
             $labels[] = mb_strtolower(t('enum_'.$genre));
         }
         $all = array_combine($genres, $labels);
+        
+        $genres_song = GDO_Song::table()->select('DISTINCT(song_genre)')->exec()->fetchColumn();
+        $genres_band = GDO_Band::table()->select('DISTINCT(band_genre)')->exec()->fetchColumn();
+        
+        $genres_db = array_merge($genres_song, $genres_band);
+        $genres_db = array_unique($genres_db);
+        $genres_db = array_combine($genres_db, $genres_db);
+        
+        $all = array_merge($all, $genres_song);
         
         # sort them
         uasort($all, function($a, $b) {

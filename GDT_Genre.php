@@ -2,12 +2,13 @@
 namespace GDO\Audio;
 
 use GDO\DB\GDT_Enum;
+use GDO\Form\GDT_ComboBox;
 
 /**
  * Music genres taken from https://www.musicgenreslist.com/
  * @author gizmore
  */
-final class GDT_Genre extends GDT_Enum
+final class GDT_Genre extends GDT_ComboBox
 {
     public static $GENRES = array(
         'art_punk',
@@ -829,10 +830,14 @@ final class GDT_Genre extends GDT_Enum
     public function __construct()
     {
         $this->icon('guitar');
-        $this->enumValues(...self::$GENRES);
-        $this->emptyValue('0');
-        $this->emptyLabel(t('select_genre'));
+//         $this->enumValues(...self::$GENRES);
+//         $this->emptyValue('0');
+//         $this->emptyLabel(t('select_genre'));
         $this->completionHref(href('Audio', 'CompleteGenre'));
+        $this->min(2);
+        $this->max(64);
+        $this->notNull();
+        $this->placeholder('genre');
     }
     
 }

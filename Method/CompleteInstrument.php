@@ -4,6 +4,7 @@ namespace GDO\Audio\Method;
 use GDO\Core\MethodCompletion;
 use GDO\Core\Website;
 use GDO\Audio\GDT_Instrument;
+use GDO\Audio\GDO_SongMusician;
 
 /**
  * Auto completion for genres
@@ -21,6 +22,13 @@ final class CompleteInstrument extends MethodCompletion
             $labels[] = mb_strtolower(t('enum_'.$instrument));
         }
         $all = array_combine($instruments, $labels);
+        
+        $instruments = GDO_SongMusician::table()->select('DISTINCT(sm_instrument)')->exec()->fetchColumn();
+        
+        $instruments = array_combine($instruments, $instruments);
+        
+        $all = array_merge($all, $instruments);
+        
         
         # sort them
         uasort($all, function($a, $b) {
