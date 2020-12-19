@@ -3,18 +3,25 @@ namespace GDO\Audio\Method;
 
 use GDO\Audio\GDO_Album;
 use GDO\Table\MethodQueryList;
-use GDO\Audio\GDT_Band;
 
 final class AlbumList extends MethodQueryList
 {
     public function gdoTable() { return GDO_Album::table(); }
-    public function isFiltered() { return true; }
-//     public function gdoHeaders()
-//     {
-//         return [
-//             GDT_Band::make('album_band'),
-//         ];
-//     }
     
+    public function gdoHeaders()
+    {
+        return $this->gdoTable()->gdoColumnsExcept(...['album_id', 'album_cover']);
+    }
 
+    public function getDefaultOrder()
+    {
+        return 'album_created';
+    }
+    
+    public function getDefaultOrderDir()
+    {
+        return false;
+    }
+    
+    
 }
