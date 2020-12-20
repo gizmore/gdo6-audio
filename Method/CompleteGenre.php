@@ -31,7 +31,7 @@ final class CompleteGenre extends MethodCompletion
         $genres_db = array_unique($genres_db);
         $genres_db = array_combine($genres_db, $genres_db);
         
-        $all = array_merge($all, $genres_song);
+        $all = array_merge($all, $genres_db);
         
         # sort them
         uasort($all, function($a, $b) {

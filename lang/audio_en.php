@@ -45,6 +45,15 @@ return array(
 'err_no_html_audio' => 'Your browser does not support the audio element.',
 'menu_audio' => 'Audio',
 
+# Download Lyrics
+'lyrics_file' =>
+'Lyrics
+Song: %s
+Band: %s
+Released: %s
+===========================
+%s',
+    
 # Nav
 'link_add_album' => 'Add Album',
 'link_album_list' => 'List Albums',

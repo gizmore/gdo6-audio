@@ -60,6 +60,7 @@ final class GDO_Song extends GDO
     public function hrefEdit() { return href('Audio', 'SongCRUD', "&song_id={$this->getID()}"); }
     public function hrefShow() { return href('Audio', 'SongShow', "&id={$this->getID()}"); }
     public function hrefPlay() { return href('Audio', 'AudioRange', "&file={$this->getFileID()}"); }
+    public function hrefDownloadLyrics() { return href('Audio', 'Lyrics', "&song={$this->getID()}"); }
     
     ##############
     ### Getter ###
@@ -94,15 +95,19 @@ final class GDO_Song extends GDO
     public function getFile() { return $this->getValue('song_file'); }
     public function getFileID() { return $this->getVar('song_file'); }
     
+    public function getPlainTextLyrics() { return $this->getVar('song_lyrics_text'); }
+    
     ##############
     ### Render ###
     ##############
     public function displayName() { return $this->display('song_title'); }
     public function displayTitle() { return $this->display('song_title'); }
-    public function displayLyrics() { return $this->getVar('song_lyrics'); }
+    public function displayLyrics() { return $this->getVar('song_lyrics_output'); }
     public function displayGenre() { return $this->gdoColumn('song_genre'); }
     public function displayDuration() { return $this->gdoColumn('song_duration')->renderCell(); }
     public function displayMusicianInstrument() { return $this->display('sm_instrument'); }
+    public function displayReleased() { return $this->gdoColumn('song_released')->displayVar(); }
+    
     public function renderCard() { return GDT_Template::php('Audio', 'card/song.php', ['gdo' => $this]); }
     public function renderList() { return GDT_Template::php('Audio', 'list/song.php', ['gdo' => $this]); }
     public function renderChoice() { return $this->display('song_title'); }
