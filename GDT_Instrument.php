@@ -1,7 +1,6 @@
 <?php
 namespace GDO\Audio;
 
-use GDO\DB\GDT_Enum;
 use GDO\Form\GDT_ComboBox;
 
 final class GDT_Instrument extends GDT_ComboBox

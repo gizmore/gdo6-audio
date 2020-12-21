@@ -4,7 +4,6 @@ namespace GDO\Audio\Method;
 use GDO\Core\Method;
 use GDO\File\FileUtil;
 use GDO\File\GDO_File;
-use GDO\File\GDT_File;
 use GDO\Audio\GDO_Song;
 use GDO\Net\Stream;
 use GDO\DB\GDT_String;

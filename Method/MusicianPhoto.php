@@ -3,7 +3,6 @@ namespace GDO\Audio\Method;
 
 use GDO\Core\Method;
 use GDO\DB\GDT_Id;
-use GDO\Audio\GDO_Album;
 use GDO\File\Method\GetFile;
 use GDO\DB\GDT_Enum;
 use GDO\Audio\GDO_Musician;
