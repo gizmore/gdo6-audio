@@ -21,7 +21,7 @@ final class GDT_AlbumSubtitle extends GDT_Container
     public $album;
     public function album(GDO_Album $album=null) { $this->album = $album; return $this; }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->horizontal();
     }

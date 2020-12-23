@@ -14,7 +14,7 @@ final class GDT_Lyrics extends GDT_Message
 {
     public function defaultLabel() { return $this->label('lyrics'); }
 
-    public function __construct()
+    protected function __construct()
     {
         $this->addClass('gdt-lyrics');
     }

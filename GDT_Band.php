@@ -11,7 +11,7 @@ final class GDT_Band extends GDT_Object
 {
     public function defaultLabel() { return $this->label('band'); }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->table(GDO_Band::table());
         $this->completionHref(href('Audio', 'CompleteBand'));

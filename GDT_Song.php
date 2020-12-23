@@ -11,7 +11,7 @@ final class GDT_Song extends GDT_Object
 {
     public function defaultLabel() { return $this->label('song'); }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->table(GDO_Song::table());
         $this->completionHref(href('Audio', 'CompleteSong'));

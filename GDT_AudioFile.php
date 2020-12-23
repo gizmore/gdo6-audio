@@ -13,7 +13,7 @@ use GDO\File\GDO_File;
  */
 final class GDT_AudioFile extends GDT_File
 {
-	public function __construct()
+	protected function __construct()
 	{
 		parent::__construct();
 		$this->audioFile();

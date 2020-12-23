@@ -826,7 +826,7 @@ final class GDT_Genre extends GDT_ComboBox
 
     public function defaultLabel() { return $this->label('genre'); }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->icon('guitar');
 //         $this->enumValues(...self::$GENRES);

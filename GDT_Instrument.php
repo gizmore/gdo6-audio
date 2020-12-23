@@ -107,7 +107,7 @@ final class GDT_Instrument extends GDT_ComboBox
     
     public function defaultLabel() { return $this->label('instrument'); }
     
-    public function __construct()
+    protected function __construct()
     {
 //         $this->enumValues(...self::$INSTRUMENTS);
 //         $this->emptyValue("0");

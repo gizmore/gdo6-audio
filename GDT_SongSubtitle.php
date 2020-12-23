@@ -18,7 +18,7 @@ final class GDT_SongSubtitle extends GDT_Container
     public $band;
     public function song(GDO_Song $song) { $this->song = $song; $this->band = $song->getBand(); return $this; }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->horizontal();
     }

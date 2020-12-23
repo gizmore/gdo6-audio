@@ -18,7 +18,7 @@ final class GDT_BandSubtitle extends GDT_Container
     public $band;
     public function band(GDO_Band $band=null) { $this->band =  $band; return $this; }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->horizontal();
     }

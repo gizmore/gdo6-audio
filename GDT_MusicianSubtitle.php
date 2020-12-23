@@ -17,7 +17,7 @@ final class GDT_MusicianSubtitle extends GDT_Container
     public $musician;
     public function musician(GDO_Musician $musician) { $this->musician= $musician; return $this; }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->horizontal();
     }
