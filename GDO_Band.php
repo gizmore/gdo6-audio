@@ -65,6 +65,7 @@ final class GDO_Band extends GDO
     ### Render ###
     ##############
     public function displayName() { return $this->display('band_name'); }
+    public function displayDescription() { return $this->gdoColumn('band_description')->renderCell(); }
     public function displayGenre() { return $this->gdoColumn('band_genre')->renderCell(); }
     public function displayFounded() { return $this->gdoColumn('band_founded')->renderCell(); }
     public function displayCountry() { return $this->gdoColumn('band_country')->withName(false)->renderCell(); }
