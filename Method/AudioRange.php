@@ -44,7 +44,6 @@ final class AudioRange extends Method
         }
         
         Stream::serveWithRange($file, $variant);
-        die();
     }
     
 }

@@ -12,6 +12,7 @@ use GDO\Audio\GDO_Song;
 use GDO\File\GDO_File;
 use function PHPUnit\Framework\assertTrue;
 use GDO\Tests\Module_Tests;
+use GDO\Audio\Method\AudioRange;
 
 /**
  * This module is good for some basic crud testing.
@@ -72,7 +73,7 @@ final class AudioTest extends TestCase
     {
         $this->ranzgruppe = GDO_Band::findById(1);
         $modTest = Module_Tests::instance();
-        $mp3 = GDO_File::fromPath('INTRO 04', $modTest->filePath('Test/data/01_BAND_SCHEIBE_VORFALL_-_INTRO_4.mp3'))->insert();
+        $mp3 = GDO_File::fromPath('INTRO 04', $modTest->filePath('Test/data/01_BAND_SCHEIBE_VORFALL_-_INTRO_4.mp3'))->insert()->copy();
         $this->intro = GDO_Song::blank([
             'song_title' => 'INTRO 4',
             'song_band' => $this->ranzgruppe->getID(),
@@ -90,5 +91,13 @@ final class AudioTest extends TestCase
         assertTrue($this->intro->isPersisted());
     }
     
+    public function testPlay()
+    {
+        $file = GDO_Song::getById(1)->getFile();
+        $p = [];
+        $gp = ['file' => $file->getID()];
+        $m = AudioRange::make();
+        $this->callMethod($m, $p, $gp);
+    }
     
 }
