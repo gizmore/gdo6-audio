@@ -13,6 +13,7 @@ use GDO\File\GDO_File;
 use function PHPUnit\Framework\assertTrue;
 use GDO\Tests\Module_Tests;
 use GDO\Audio\Method\AudioRange;
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * This module is good for some basic crud testing.
@@ -67,6 +68,15 @@ final class AudioTest extends TestCase
         
         $this->bsv = GDO_Album::findById(1);
         assertTrue(!!$this->bsv);
+    }
+    
+    public function testNestedFormOutput()
+    {
+        $gp = [
+            'album_id' => '1',
+        ];
+        $r = MethodTest::make()->method(AlbumCRUD::make())->getParameters($gp)->execute();
+        assertEquals(1, substr_count($r->render(), 'Assign Song'), 'Test if nested cruds do not display twice.');
     }
     
     public function testCreateSong()
