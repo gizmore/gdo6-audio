@@ -61,6 +61,8 @@ final class SongCRUD extends MethodAudioCRUD
     
     public function afterCreate(GDT_Form $form, GDO $gdo)
     {
+//         parent::afterCreate($form, $gdo);
+        
         /** @var $song GDO_Song **/
         $song = $gdo;
         if ($this->album)
