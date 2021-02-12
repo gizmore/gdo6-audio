@@ -43,7 +43,7 @@ final class AlbumSong extends MethodForm
         
         $form->addField(GDT_Album::make('album_id')->initial(Common::getRequestString('album_id')));
         $form->addField(GDT_Song::make('song_id')->initial(Common::getRequestString('song_id')));
-        $form->addField(GDT_Submit::make());
+        $form->actions()->addField(GDT_Submit::make());
         $form->addField(GDT_AntiCSRF::make());
     }
 

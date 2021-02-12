@@ -48,7 +48,7 @@ final class SongMusician extends MethodForm
             }
         }
         
-        $form->addField(GDT_Submit::make());
+        $form->actions()->addField(GDT_Submit::make());
         $form->addField(GDT_AntiCSRF::make());
     }
 
