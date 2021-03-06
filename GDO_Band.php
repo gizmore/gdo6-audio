@@ -23,9 +23,10 @@ use GDO\DB\GDT_Virtual;
  * A music band entity.
  * 
  * @author gizmore
- * @version 6.10
- * @since 6.10
+ * @version 6.10.1
+ * @since 6.10.0
  *
+ * @see GDO_Song
  * @see GDO_Album
  */
 final class GDO_Band extends GDO
@@ -35,7 +36,7 @@ final class GDO_Band extends GDO
     ###########
     public function gdoColumns()
     {
-        return array(
+        return [
             GDT_AutoInc::make('band_id'),
             GDT_Title::make('band_name')->label('name')->notNull()->unique(),
             GDT_Message::make('band_description')->label('description'),
@@ -43,15 +44,15 @@ final class GDO_Band extends GDO
             GDT_Date::make('band_founded')->label('founded'),
             GDT_Country::make('band_country')->withCompletion(),
             GDT_Checkbox::make('band_featured')->label('featured')->initial('0')->hidden(),
-            GDT_Virtual::make('band_albums')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(*) FROM gdo_album WHERE album_band=band_id"),
-            GDT_Virtual::make('band_songs')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(*) FROM gdo_song WHERE song_band=band_id"),
+            GDT_Virtual::make('band_albums')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(*) FROM gdo_album a JOIN gdo_band ab ON ab.band_id=a.album_band WHERE a.album_band=ab.band_id"),
+            GDT_Virtual::make('band_songs')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(*) FROM gdo_song s JOIN gdo_band sb ON sb.band_id=s.song_band WHERE s.song_band=sb.band_id"),
             GDT_EditedAt::make('band_edited'),
             GDT_EditedBy::make('band_editor'),
             GDT_CreatedAt::make('band_created'),
             GDT_CreatedBy::make('band_creator'),
             GDT_DeletedAt::make('band_deleted'),
             GDT_DeletedBy::make('band_deletor'),
-        );
+        ]; 
     }
     
     ##############

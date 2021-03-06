@@ -18,10 +18,11 @@ use function PHPUnit\Framework\assertEquals;
 /**
  * This module is good for some basic crud testing.
  * It creates the basic Ranzgruppe website contents.
- * Ranzgruppe is the gdo6 testcase for a medium 
+ * Ranzgruppe is the gdo6 testcase for a medium sized complexity.
+ * It uses virtual columns to count a lot stats, and is an essential test case for the core.
  * @author gizmore
- * @version 6.10
- * @since 6.10
+ * @version 6.10.1
+ * @since 6.10.0
  */
 final class AudioTest extends TestCase
 {

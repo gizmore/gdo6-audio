@@ -1,20 +1,22 @@
 <?php
 namespace GDO\Audio\Method;
 
-use GDO\Core\Method;
 use GDO\File\FileUtil;
 use GDO\File\GDO_File;
 use GDO\Audio\GDO_Song;
 use GDO\Net\Stream;
 use GDO\DB\GDT_String;
 use GDO\Audio\GDT_AudioFile;
+use GDO\Core\MethodAjax;
 
 /**
  * Get the raw audio file for a song.
+ * Use HTTP range requests to search through the file.
  * @author gizmore
- *
+ * @version 6.10.1
+ * @since 6.10.0
  */
-final class AudioRange extends Method
+final class AudioRange extends MethodAjax
 {
     public function gdoParameters()
     {
