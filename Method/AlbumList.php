@@ -6,30 +6,27 @@ use GDO\Table\MethodQueryList;
 use GDO\Audio\GDT_Band;
 
 /**
- * List albums.
+ * List all audio albums.
  * Prefilter by band.
+ * 
  * @author gizmore
- * @since 6.10
+ * @version 6.10.1
+ * @since 6.10.0
+ * 
+ * @see GDO_Album
  */
 final class AlbumList extends MethodQueryList
 {
     public function gdoTable() { return GDO_Album::table(); }
+    public function getDefaultOrder() { return 'album_created'; }
+    public function getDefaultOrderDir() { return false; }
     
     public function gdoHeaders()
     {
-        return $this->gdoTable()->gdoColumnsExcept(...['album_id', 'album_cover']);
+        return $this->gdoTable()->gdoColumnsExcept(
+            'album_id', 'album_cover');
     }
 
-    public function getDefaultOrder()
-    {
-        return 'album_created';
-    }
-    
-    public function getDefaultOrderDir()
-    {
-        return false;
-    }
-    
     public function gdoParameters()
     {
         return [
