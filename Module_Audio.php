@@ -41,7 +41,7 @@ final class Module_Audio extends GDO_Module
 	##############
 	public function onInstall() { return Install::OnInstall($this); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/audio'); }
-	public function getDependencies() { return ['File']; }
+	public function getDependencies() { return ['File', 'Birthday']; }
 
 	##############
 	### Config ###

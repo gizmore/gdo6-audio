@@ -12,7 +12,7 @@ use GDO\DB\GDT_AutoInc;
 use GDO\Country\GDT_Country;
 use GDO\DB\GDT_DeletedAt;
 use GDO\DB\GDT_DeletedBy;
-use GDO\Date\GDT_Birthdate;
+use GDO\Birthday\GDT_Birthdate;
 use GDO\File\GDT_ImageFile;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_UInt;
