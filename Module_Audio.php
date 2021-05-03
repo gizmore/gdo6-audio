@@ -11,8 +11,8 @@ use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Menu;
 use GDO\User\GDO_User;
 use GDO\File\GDT_Filesize;
-use GDO\Core\Module_Core;
 use GDO\UI\GDT_Page;
+use GDO\Javascript\Module_Javascript;
 
 /**
  * Audio utilities and Song/Album/Musician structure.
@@ -93,7 +93,7 @@ final class Module_Audio extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-	    $min = Module_Core::instance()->cfgMinifyJS() === 'no' ? '' : '-jsmin';
+	    $min = Module_Javascript::instance()->cfgMinifyJS() === 'no' ? '' : '-jsmin';
 	    $this->addBowerJavascript("soundmanager2/script/soundmanager2-nodebug{$min}.js");
 	    $this->addJavascript('3p/sm2-bar-ui/bar-ui.js');
 	    $this->addCSS('3p/sm2-bar-ui/bar-ui.css');
