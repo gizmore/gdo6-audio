@@ -69,7 +69,7 @@ final class CompleteInstrument extends MethodCompletion
             );
         }
         
-        Website::renderJSON($json);
+        Website::outputJSON($json);
     }
     
 }

@@ -73,7 +73,7 @@ final class CompleteGenre extends MethodCompletion
             );
         }
         
-        Website::renderJSON($json);
+        Website::outputJSON($json);
     }
     
 }
