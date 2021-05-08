@@ -48,8 +48,8 @@ final class AlbumCRUD extends MethodAudioCRUD
             $setSong = GDT_Method::make()->method(AlbumSong::make()->album($this->gdo));
             $crudSong = GDT_Method::make()->method(SongCRUD::make()->album($this->gdo));
             return parent::renderPage()->
-            add($setSong->execute())->
-            add($crudSong->execute());
+            addField($setSong->execute())->
+            addField($crudSong->execute());
         }
         return parent::renderPage();
     }

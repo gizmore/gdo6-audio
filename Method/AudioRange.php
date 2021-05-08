@@ -13,7 +13,7 @@ use GDO\Core\MethodAjax;
  * Get the raw audio file for a song.
  * Use HTTP range requests to search through the file.
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.3
  * @since 6.10.0
  */
 final class AudioRange extends MethodAjax
