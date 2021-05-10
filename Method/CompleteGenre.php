@@ -6,6 +6,7 @@ use GDO\Audio\GDT_Genre;
 use GDO\Core\Website;
 use GDO\Audio\GDO_Song;
 use GDO\Audio\GDO_Band;
+use GDO\Core\GDT_Array;
 
 /**
  * Auto completion for genres
@@ -72,8 +73,7 @@ final class CompleteGenre extends MethodCompletion
                 'display' => $value,
             );
         }
-        
-        Website::outputJSON($json);
+        return GDT_Array::make()->data($json);
     }
     
 }

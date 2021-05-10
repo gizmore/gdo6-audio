@@ -5,6 +5,7 @@ use GDO\Core\MethodCompletion;
 use GDO\Core\Website;
 use GDO\Audio\GDT_Instrument;
 use GDO\Audio\GDO_SongMusician;
+use GDO\Core\GDT_Array;
 
 /**
  * Auto completion for genres
@@ -69,7 +70,7 @@ final class CompleteInstrument extends MethodCompletion
             );
         }
         
-        Website::outputJSON($json);
+        return GDT_Array::makeWith($json);
     }
     
 }
