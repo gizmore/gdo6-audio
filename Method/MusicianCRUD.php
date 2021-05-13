@@ -36,7 +36,7 @@ final class MusicianCRUD extends MethodAudioCRUD
         {
             $setMusician = SongMusician::make()->musician($this->gdo);
             return parent::renderPage()->
-            add($setMusician->execute());
+            addField($setMusician->execute());
         }
         return parent::renderPage();
     }
