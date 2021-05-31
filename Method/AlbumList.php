@@ -18,8 +18,7 @@ use GDO\Audio\GDT_Band;
 final class AlbumList extends MethodQueryList
 {
     public function gdoTable() { return GDO_Album::table(); }
-    public function getDefaultOrder() { return 'album_created'; }
-    public function getDefaultOrderDir() { return false; }
+    public function getDefaultOrder() { return 'album_created DESC'; }
     
     public function gdoHeaders()
     {

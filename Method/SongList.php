@@ -15,8 +15,7 @@ final class SongList extends MethodQueryList
 {
     public function gdoTable() { return GDO_Song::table(); }
 
-    public function getDefaultOrder() { return 'song_released'; }
-    public function getDefaultOrderDir() { return false; }
+    public function getDefaultOrder() { return 'song_released DESC'; }
     
     public function gdoHeaders()
     {
