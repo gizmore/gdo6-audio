@@ -21,7 +21,7 @@ use function PHPUnit\Framework\assertEquals;
  * Ranzgruppe is the gdo6 testcase for a medium sized complexity.
  * It uses virtual columns to count a lot stats, and is an essential test case for the core.
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.4
  * @since 6.10.0
  */
 final class AudioTest extends TestCase
@@ -40,6 +40,7 @@ final class AudioTest extends TestCase
             'band_genre' => 'punk',
             'band_founded' => '2020-12-24 13:37:42.314',
             'band_country' => 'DE',
+            'submit' => '1',
         ];
         $m = MethodTest::make()->method($method)->parameters($p);
         $m->execute();
@@ -63,6 +64,7 @@ final class AudioTest extends TestCase
             'album_title' => 'Band. Scheibe. Vorfall.',
             'album_description' => 'Inspiriert vom Film Troja. Diese eine Melodie Alter. Und des amtiken Griechenland.',
             'album_released' => null,
+            'submit' => 1,
         ];
         MethodTest::make()->method($m)->getParameters($gp)->parameters($p)->execute();
         $this->assert200('Test if albums can be created.');
@@ -97,6 +99,7 @@ final class AudioTest extends TestCase
             'song_bpm' => null,
             'song_released' => '2020-12-26',
             'song_featured' => '1',
+            'submit' => 1,
         ])->insert();
         
         assertTrue($this->intro->isPersisted());
