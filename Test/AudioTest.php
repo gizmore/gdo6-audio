@@ -38,9 +38,9 @@ final class AudioTest extends TestCase
             'band_name' => 'Ranzgruppe',
             'band_description' => 'Die wohl längste Punkband der Welt aus Peine. Stahlhart und Eiskalt!',
             'band_genre' => 'punk',
-            'band_founded' => '2020-12-24 13:37:42.314',
+            'band_founded' => '24.12.2020 13:37:42.314',
             'band_country' => 'DE',
-            'submit' => '1',
+            'create' => '1',
         ];
         $m = MethodTest::make()->method($method)->parameters($p);
         $m->execute();
@@ -62,9 +62,10 @@ final class AudioTest extends TestCase
         ];
         $p = [
             'album_title' => 'Band. Scheibe. Vorfall.',
+            'album_genre' => 'Punk',
             'album_description' => 'Inspiriert vom Film Troja. Diese eine Melodie Alter. Und des amtiken Griechenland.',
             'album_released' => null,
-            'submit' => 1,
+            'create' => 1,
         ];
         MethodTest::make()->method($m)->getParameters($gp)->parameters($p)->execute();
         $this->assert200('Test if albums can be created.');
@@ -97,7 +98,7 @@ final class AudioTest extends TestCase
             'song_description' => 'Athenis Sei Meiner Seele Gnädig - Das jüngste Gericht dann ist Schicht.',
             'song_duration' => '3m 25',
             'song_bpm' => null,
-            'song_released' => '2020-12-26',
+            'song_released' => '26.12.2020',
             'song_featured' => '1',
             'submit' => 1,
         ])->insert();
