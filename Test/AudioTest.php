@@ -33,6 +33,8 @@ final class AudioTest extends TestCase
     
     public function testBandCreation()
     {
+        $this->lang('de');
+        $this->timezone('Europe/Berlin');
         $method = BandCRUD::make();
         $p = [
             'band_name' => 'Ranzgruppe',
@@ -43,7 +45,8 @@ final class AudioTest extends TestCase
             'create' => '1',
         ];
         $m = MethodTest::make()->method($method)->parameters($p);
-        $m->execute();
+        $r = $m->execute();
+        echo $r->renderCLI();
         $this->assert200('Test if bands can be created.');
         
         $this->ranzgruppe = GDO_Band::findById(1);
