@@ -33,7 +33,7 @@ final class Lyrics extends Method
     public function execute()
     {
         $song = $this->getSong();
-        $fileName = "Lyrics_" . GDT_Link::urlencodeSEO($song->getBand()->displayName().'_'.$song->displayTitle());
+        $fileName = "Lyrics_" . seo($song->getBand()->displayName().'_'.$song->displayTitle());
         $fileName .= '.txt';
         $lyrics = t('lyrics_file', [
             $song->displayTitle(), $song->getBand()->displayName(),
