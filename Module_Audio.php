@@ -94,8 +94,8 @@ final class Module_Audio extends GDO_Module
 	public function onIncludeScripts()
 	{
 	    $min = Module_Javascript::instance()->cfgMinifyJS() === 'no' ? '' : '-jsmin';
-	    $this->addBowerJavascript("soundmanager2/script/soundmanager2-nodebug{$min}.js");
-	    $this->addJavascript('3p/sm2-bar-ui/bar-ui.js');
+	    $this->addBowerJS("soundmanager2/script/soundmanager2-nodebug{$min}.js");
+	    $this->addJS('3p/sm2-bar-ui/bar-ui.js');
 	    $this->addCSS('3p/sm2-bar-ui/bar-ui.css');
 	    $this->addCSS('css/audio.css');
 	}
