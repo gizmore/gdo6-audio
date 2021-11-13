@@ -9,8 +9,8 @@ use GDO\Core\MethodCompletionSearch;
  * Generic completion for music albums.
  * 
  * @author gizmore
- * @version 6.10
- * @since 6.10
+ * @version 6.10.6
+ * @since 6.10.0
  *
  * @see GDT_Table
  */
@@ -34,12 +34,11 @@ final class CompleteAlbum extends MethodCompletionSearch
     public function renderJSON(GDO $gdo)
     {
         /** @var $gdo GDO_Album **/
-        return array(
+        return [
             'id' => $gdo->getID(),
             'text' => $gdo->displayTitle(),
             'display' => $gdo->renderChoice(),
-        );
+        ];
     }
-
     
 }
