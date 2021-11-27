@@ -12,7 +12,7 @@ if ($gdo->isFeatured())
     $list->addClass('featured');
 }
 
-$list->avatar($gdo->gdoColumnCopy('musician_photo')->variant('thumb')->previewHREF(href('Audio', 'MusicianPhoto', '&file='))->imageSize(48, 48)->withFileInfo(false));
+$list->avatar($gdo->gdoColumnCopy('musician_photo')->variant('thumb')->previewHREF(href('Audio', 'MusicianPhoto', '&file={id}'))->imageSize(48, 48)->withFileInfo(false));
 $list->title(GDT_Link::make()->labelRaw($gdo->display('musician_name'))->href($gdo->hrefShow()));
 $list->subtitle(GDT_MusicianSubtitle::make()->musician($gdo));
 

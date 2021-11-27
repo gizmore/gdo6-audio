@@ -42,7 +42,7 @@ final class GDO_Album extends GDO
             GDT_Band::make('album_band'),
             GDT_Date::make('album_released')->label('released'),
             GDT_Checkbox::make('album_featured')->label('featured')->initial('0')->hidden(),
-            GDT_ImageFile::make('album_cover')->label('cover')->scaledVersion('thumb', 128, 128)->previewHREF(href('Audio', 'Cover', "&file=")),
+            GDT_ImageFile::make('album_cover')->label('cover')->scaledVersion('thumb', 128, 128)->previewHREF(href('Audio', 'Cover', "&file={id}")),
             GDT_Virtual::make('album_tracks')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(*) FROM gdo_songalbum WHERE sa_album=album_id"),
             GDT_EditedAt::make('album_edited'),
             GDT_EditedBy::make('album_editor'),

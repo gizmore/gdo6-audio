@@ -35,7 +35,7 @@ final class GDO_Musician extends GDO
             GDT_Gender::make('musician_gender'),
             GDT_Country::make('musician_country')->withCompletion(),
             GDT_Birthdate::make('musician_birthday'),
-            GDT_ImageFile::make('musician_photo')->scaledVersion('thumb', 64, 64)->previewHREF(href('Audio', 'MusicianPhoto', '&file=')),
+            GDT_ImageFile::make('musician_photo')->scaledVersion('thumb', 64, 64)->previewHREF(href('Audio', 'MusicianPhoto', '&file={id}')),
             GDT_Checkbox::make('musician_featured')->label('featured')->initial('0')->hidden(),
             GDT_Virtual::make('musician_songs')->label('_num_songs')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(DISTINCT(sm_song)) FROM gdo_songmusician WHERE sm_musician = musician_id"),
             GDT_Virtual::make('musician_instruments')->label('num_instruments')->gdtType(GDT_UInt::make())->subquery("SELECT COUNT(DISTINCT(sm_instrument)) FROM gdo_songmusician WHERE sm_musician = musician_id"),

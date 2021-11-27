@@ -27,7 +27,7 @@ final class SongCRUD extends MethodAudioCRUD
     public function init()
     {
         parent::init();
-        if ($id = Common::getGetString('album_id'))
+        if ($id = Common::getRequestString('album_id'))
         {
             if ($album = GDO_Album::table()->find($id, false))
             {
