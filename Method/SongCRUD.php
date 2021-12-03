@@ -24,9 +24,9 @@ final class SongCRUD extends MethodAudioCRUD
     public function formName() { return 'form_song'; }
     public function crudName() { return 'song_id'; }
     
-    public function init()
+    public function onInit()
     {
-        parent::init();
+        parent::onInit();
         if ($id = Common::getRequestString('album_id'))
         {
             if ($album = GDO_Album::table()->find($id, false))

@@ -20,9 +20,9 @@ final class AlbumCRUD extends MethodAudioCRUD
     
     /** @var GDO_Band **/
     private $band;
-    public function init()
+    public function onInit()
     {
-        parent::init();
+        parent::onInit();
         $this->band = GDO_Band::table()->find(Common::getRequestString('band_id'), false);
     }
     
