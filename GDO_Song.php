@@ -106,7 +106,7 @@ final class GDO_Song extends GDO
     public function displayGenre() { return $this->gdoColumn('song_genre'); }
     public function displayDuration() { return $this->gdoColumn('song_duration')->renderCell(); }
     public function displayMusicianInstrument() { return $this->display('sm_instrument'); }
-    public function displayReleased() { return $this->gdoColumn('song_released')->displayVar(); }
+    public function displayReleased() { return $this->gdoColumn('song_released')->display(); }
     
     public function renderCard() { return GDT_Template::php('Audio', 'card/song.php', ['gdo' => $this]); }
     public function renderList() { return GDT_Template::php('Audio', 'list/song.php', ['gdo' => $this]); }
