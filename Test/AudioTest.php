@@ -101,7 +101,7 @@ final class AudioTest extends TestCase
             'song_description' => 'Athenis Sei Meiner Seele Gnädig - Das jüngste Gericht dann ist Schicht.',
             'song_duration' => '3m 25',
             'song_bpm' => null,
-            'song_released' => '26.12.2020',
+            'song_released' => '2020-12-26',
             'song_featured' => '1',
             'submit' => 1,
         ])->insert();
