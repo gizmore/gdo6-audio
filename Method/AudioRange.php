@@ -33,7 +33,7 @@ final class AudioRange extends MethodAjax
     {
         $fileID = $this->getFileID();
         $variant = $this->getVariant();
-        GDO_Song::table()->findBy('song_file', $fileID);
+        GDO_Song::table()->findBy('gdo_song.song_file', $fileID);
         if (!($file = GDO_File::getById($fileID)))
         {
             return $this->error('err_unknown_file', null, 404);

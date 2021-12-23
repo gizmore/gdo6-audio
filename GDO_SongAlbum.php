@@ -22,8 +22,8 @@ final class GDO_SongAlbum extends GDO
     public static function getSongs(GDO_Album $album)
     {
         return self::table()->
-        select('gdo_song.*, sa_track')->
-        joinObject('sa_song')->
+        select('sa_song_t.*, sa_track')->
+//         joinObject('sa_song')->
         where('sa_album='.$album->getID())->
         order('sa_track')->
         exec()->
