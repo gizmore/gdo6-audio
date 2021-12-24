@@ -45,7 +45,7 @@ final class SongList extends MethodQueryList
         $query = parent::getQuery();
         if ($bandId = $this->getBandID())
         {
-            $query->where("song_band={$bandId}");
+            $query->where("gdo_song.song_band={$bandId}");
         }
         return $query;
     }
