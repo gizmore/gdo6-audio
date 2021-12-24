@@ -24,12 +24,12 @@ final class GDO_SongMusician extends GDO
     
     public static function getSongs(GDO_Musician $musician)
     {
-        return self::table()->select('gdo_song.*, sm_instrument')->joinObject('sm_song')->fetchTable(GDO_Song::table())->where("sm_musician={$musician->getID()}")->exec()->fetchAllObjects();
+        return self::table()->select('sm_song_t.*, sm_instrument')->joinObject('sm_song')->fetchTable(GDO_Song::table())->where("sm_musician={$musician->getID()}")->exec()->fetchAllObjects();
     }
 
     public static function getMusicians(GDO_Song $song)
     {
-        return self::table()->select('gdo_musician.*, sm_instrument')->joinObject('sm_musician')->fetchTable(GDO_Musician::table())->where("sm_song={$song->getID()}")->exec()->fetchAllObjects();
+        return self::table()->select('sm_musician_t.*, sm_instrument')->joinObject('sm_musician')->fetchTable(GDO_Musician::table())->where("sm_song={$song->getID()}")->exec()->fetchAllObjects();
     }
     
     public static function connectMusician(GDO_Song $song, GDO_Musician $musician, GDT_Instrument $instrument)
