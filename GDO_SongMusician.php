@@ -7,7 +7,7 @@ use GDO\DB\GDT_AutoInc;
 /**
  * Relation table for song<=>musician
  * @author gizmore
- * @version 6.10
+ * @version 6.11.2
  * @since 6.10
  */
 final class GDO_SongMusician extends GDO
